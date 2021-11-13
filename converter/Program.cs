@@ -29,11 +29,12 @@ namespace converter
                 return;
             }
 
-            int number = Convert.ToInt32(args[0]);
+            char plusOrMinus = Convert.ToInt32(args[0]) >= 0 ? ' ' : '-';
+            int number = Math.Abs(Convert.ToInt32(args[0]));
 
             int basis = Convert.ToInt32(args[1]);
 
-            Console.WriteLine($"Result: {Converter(number, basis)}");
+            Console.WriteLine($"Result: {plusOrMinus} {Converter(number, basis)}");
 
         }
 
