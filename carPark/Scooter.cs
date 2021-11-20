@@ -10,6 +10,7 @@ namespace carPark
             : base(transmission, chassis)
         {
             NumberOfSeats = numberOfSeats;
+            this.engine = engine;
         }
 
         public override string ToString()
