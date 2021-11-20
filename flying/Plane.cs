@@ -6,6 +6,7 @@ namespace flying
     {
         public const double Speed = 200;
         public const double MaxSpeed = 900;
+        public const double MaxFlightDistance = 8000;
         public const int DistanceToChangeSpeed = 10;
         public const int SpeedChangeBy = 10;
 
@@ -22,7 +23,7 @@ namespace flying
         {
             if (GetFlightDistance(coordinateFlyTo) > 8000)
             {
-                throw new ArgumentException("Plane can't fly far then 8000 km without refueling!");
+                throw new ArgumentException($"Plane can't fly far then {MaxFlightDistance} km without refueling!");
             }
 
             currentPosition.x = coordinateFlyTo.x;
