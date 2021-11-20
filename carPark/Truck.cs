@@ -6,14 +6,11 @@ namespace carPark
         public double TrunkVolume { get; set; }
         public ReciprocatingEngine engine = new ReciprocatingEngine();
 
-        public Truck(int numberOfWheels, string numberOfChassis, double permissibleLoad, string typeOfTransmission, int numberOfGears,
-            string manufacturer, double trunkVolume, string serialNumber,
-            double power, double volume) : base(numberOfWheels, numberOfChassis, permissibleLoad, typeOfTransmission, numberOfGears, manufacturer)
+        public Truck(double trunkVolume, ReciprocatingEngine engine, Chassis chassis, Transmission transmission)
+            : base(transmission, chassis)
         {
             TrunkVolume = trunkVolume;
-            engine.Power = power;
-            engine.Volume = volume;
-            engine.SerialNumber = serialNumber;
+            this.engine = engine;
         }
 
         public override string ToString()
