@@ -28,7 +28,6 @@ namespace flying
             currentPosition.x = coordinateFlyTo.x;
             currentPosition.y = coordinateFlyTo.y;
             currentPosition.z = coordinateFlyTo.z;
-            Console.WriteLine("Your flying is sucssesful!");
         }
 
         /// <summary>
@@ -38,22 +37,38 @@ namespace flying
         /// <returns> Flight time </returns>
         public double GetFlyTime(Cordinate3D coordinateFlyTo)
         {
-            double time = 0.0;
-            double speed = Speed;
-            double distance = GetFlightDistance(coordinateFlyTo);
+            double time;
+            int speedChangeCount = (int)((MaxSpeed - Speed) / SpeedChangeBy);
 
-            while (speed < MaxSpeed && distance >= DistanceToChangeSpeed)
+            if (GetFlightDistance(coordinateFlyTo) > speedChangeCount * DistanceToChangeSpeed)
             {
-                time += DistanceToChangeSpeed / speed;
-                speed += SpeedChangeBy;
-                distance -= DistanceToChangeSpeed;
+                time = (GetFlightDistance(coordinateFlyTo) - speedChangeCount * DistanceToChangeSpeed) / MaxSpeed
+                    + GetSum(speedChangeCount);
+                return time;
             }
 
-            if (distance != 0.0)
-            {
-                time += distance / speed;
-            }
+            speedChangeCount = (int)(GetFlightDistance(coordinateFlyTo) / DistanceToChangeSpeed);
+
+            time = GetSum(speedChangeCount);
+
             return time;
+        }
+
+        /// <summary>
+        /// Method counting sum of time than plane flying with unequal speeds
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns>sum</returns>
+        private double GetSum(int n)
+        {
+            double sum = 0.0;
+
+            for (int i = 0; i <= n; i++)
+            {
+                sum += DistanceToChangeSpeed / (Speed + i * SpeedChangeBy);
+            }
+
+            return sum;
         }
     }
 }
