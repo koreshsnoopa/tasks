@@ -13,7 +13,6 @@ namespace subsequence
             catch (ArgumentException ex)
             {
                 Console.WriteLine($"Exeption: {ex.Message}");
-                return;
             }
 
             Console.WriteLine($"Length of max subsequence unequal signs: {lenghthOfMaxUnequalSubsequence(args)}");
