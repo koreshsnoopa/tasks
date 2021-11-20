@@ -6,15 +6,10 @@ namespace carPark
         public Transmission transmission = new Transmission();
         public Chassis chassis = new Chassis();
 
-        public Transport(int numberOfWheels, string numberOfChassis, double permissibleLoad,
-            string typeOfTransmission, int numberOfGears, string manufacturer)
+        public Transport(Transmission transmission, Chassis chassis)
         {
-            transmission.TypeOfTransmission = typeOfTransmission;
-            transmission.NumberOfGears = numberOfGears;
-            transmission.Manufacturer = manufacturer;
-            chassis.NumberOfWheels = numberOfWheels;
-            chassis.NumberOfChassis = numberOfChassis;
-            chassis.PermissibleLoad = permissibleLoad;
+            this.transmission = transmission;
+            this.chassis = chassis;
         }
 
     }
