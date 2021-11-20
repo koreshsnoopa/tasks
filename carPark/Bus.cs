@@ -7,14 +7,11 @@ namespace carPark
         public ReciprocatingEngine engine = new ReciprocatingEngine();
 
 
-        public Bus(int numberOfWheels, string numberOfChassis, double permissibleLoad, string typeOfTransmission, int numberOfGears,
-           string manufacturer, string routeNumber, string serialNumber,
-           double power, double volume) : base(numberOfWheels, numberOfChassis, permissibleLoad, typeOfTransmission, numberOfGears, manufacturer)
+        public Bus(ReciprocatingEngine engine, string routeNumber, Transmission transmission, Chassis chassis)
+            : base(transmission, chassis)
         {
             RouteNumber = routeNumber;
-            engine.Power = power;
-            engine.Volume = volume;
-            engine.SerialNumber = serialNumber;
+            this.engine = engine;
         }
 
         public override string ToString()
