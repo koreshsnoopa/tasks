@@ -20,7 +20,7 @@ namespace subsequence
 
         static int lenghthOfMaxUnequalSubsequence(string[] args)
         {
-            if (args.Length != 1)
+            if (args.Length != 1 || args == null)
             {
                 throw new ArgumentException("You can input only one string!");
             }
