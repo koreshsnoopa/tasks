@@ -13,20 +13,17 @@ namespace converter
             {
                 InputValidation(args);
             }
-            catch (ArgumentException ae)
+            catch (ArgumentException ex)
             {
-                Console.WriteLine(ae.Message);
-                return;
+                Console.WriteLine(ex.Message);
             }
-            catch (IndexOutOfRangeException ioore)
+            catch (IndexOutOfRangeException ex)
             {
-                Console.WriteLine(ioore.Message);
-                return;
+                Console.WriteLine(ex.Message);
             }
-            catch (InvalidCastException ice)
+            catch (InvalidCastException ex)
             {
-                Console.WriteLine(ice.Message);
-                return;
+                Console.WriteLine(ex.Message);
             }
 
             char plusOrMinus = Convert.ToInt32(args[0]) >= 0 ? ' ' : '-';
@@ -71,7 +68,7 @@ namespace converter
 
         static void InputValidation(string[] args)
         {
-            if (args.Length != 2)
+            if (args.Length != 2 || args == null)
             {
                 throw new IndexOutOfRangeException("You need to input only 2 agruments: number and base of another system!");
             }
