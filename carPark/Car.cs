@@ -3,19 +3,14 @@ namespace carPark
 {
     public class Car : Transport
     {
-        public string Color { get; private set; }
+        public string Color { get; set; }
         public ElectricEngine engine = new ElectricEngine();
 
 
-        public Car(int numberOfWheels, string numberOfChassis, double permissibleLoad,
-            string typeOfTransmission, int numberOfGears, string manufacturer, string color,
-            string serialNumber, double power, double volume) : base(numberOfWheels, numberOfChassis, permissibleLoad,
-             typeOfTransmission, numberOfGears, manufacturer)
+        public Car(string color, ElectricEngine engine, Chassis chassis, Transmission transmission) : base(transmission, chassis)
         {
             Color = color;
-            engine.Power = power;
-            engine.Volume = volume;
-            engine.SerialNumber = serialNumber;
+            this.engine = engine;
         }
 
         public override string ToString()
