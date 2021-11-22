@@ -4,11 +4,11 @@ namespace flying
 
     public class Plane : Flyable, IFlyable
     {
-        public const double Speed = 200;
-        public const double MaxSpeed = 900;
-        public const double MaxFlightDistance = 8000;
-        public const double MinFlightDistance = 6;
-        public const int DistanceToChangeSpeed = 10;
+        public const double Speed = 200; 
+        public const double MaxSpeed = 900; // Maximum speed
+        public const double MaxFlightDistance = 8000; // Maximum flight distance
+        public const double MinFlightDistance = 6; // Minimum flight distance
+        public const int DistanceToChangeSpeed = 10; 
         public const int SpeedChangeBy = 10;
 
         public Plane(double x, double y, double z) : base (x, y, z)
@@ -45,28 +45,24 @@ namespace flying
         /// <returns> Flight time </returns>
         public double GetFlyTime(Cordinate3D coordinateFlyTo)
         {
-            double time;
             int speedChangeCount = (int)((MaxSpeed - Speed) / SpeedChangeBy);
 
             if (GetFlightDistance(coordinateFlyTo) > speedChangeCount * DistanceToChangeSpeed)
             {
-                time = (GetFlightDistance(coordinateFlyTo) - speedChangeCount * DistanceToChangeSpeed) / MaxSpeed
+                return (GetFlightDistance(coordinateFlyTo) - speedChangeCount * DistanceToChangeSpeed) / MaxSpeed
                     + GetSum(speedChangeCount);
-                return time;
             }
 
             speedChangeCount = (int)(GetFlightDistance(coordinateFlyTo) / DistanceToChangeSpeed);
 
-            time = GetSum(speedChangeCount);
-
-            return time;
+            return GetSum(speedChangeCount);
         }
 
         /// <summary>
         /// Method counting sum of time than plane flying with unequal speeds
         /// </summary>
         /// <param name="n"></param>
-        /// <returns>sum</returns>
+        /// <returns> sum </returns>
         private double GetSum(int n)
         {
             double sum = 0.0;
