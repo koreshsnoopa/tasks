@@ -7,6 +7,7 @@ namespace flying
         public const double Speed = 200;
         public const double MaxSpeed = 900;
         public const double MaxFlightDistance = 8000;
+        public const double MinFlightDistance = 6;
         public const int DistanceToChangeSpeed = 10;
         public const int SpeedChangeBy = 10;
 
@@ -16,14 +17,20 @@ namespace flying
 
         /// <summary>
         /// Method changing the current position to position to fly.
-        /// Plane can't fly far rhen 8000 km without refueling that is why if flight distance more than 8000 km method trows Argument exeption
+        /// Plane can't fly far rhen 8000 km without refueling that is why if flight distance more than 8000 km or less
+        ///  then 6 km method trows Argument exeption
         /// </summary>
         /// <param name="coordinateFlyTo"></param>
         public void FlyTo(Cordinate3D coordinateFlyTo)
         {
-            if (GetFlightDistance(coordinateFlyTo) > 8000)
+            if (GetFlightDistance(coordinateFlyTo) > MaxFlightDistance)
             {
                 throw new ArgumentException($"Plane can't fly far then {MaxFlightDistance} km without refueling!");
+            }
+
+            if (GetFlightDistance(coordinateFlyTo) > MinFlightDistance)
+            {
+                throw new ArgumentException($"Plane can't fly less then {MinFlightDistance} km without refueling!");
             }
 
             currentPosition.x = coordinateFlyTo.x;
