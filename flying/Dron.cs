@@ -3,6 +3,8 @@ namespace flying
 {
     public class Dron : Flyable, IFlyable
     {
+        public const int MaxFlightDistance = 1000; // Maximum flight distance
+
         public static double Speed = 50;
 
         public Dron(double x, double y, double z) : base(x, y, z)
@@ -16,15 +18,14 @@ namespace flying
         /// <param name="coordinateFlyTo"></param>
         public void FlyTo(Cordinate3D coordinateFlyTo)
         {
-            if (GetFlightDistance(coordinateFlyTo) > 1000)
+            if (GetFlightDistance(coordinateFlyTo) > MaxFlightDistance)
             {
-                throw new ArgumentException("Dron can't fly far then 1000 km!");
+                throw new ArgumentException($"Dron can't fly far then {MaxFlightDistance} km!");
             }
 
                 currentPosition.x = coordinateFlyTo.x;
                 currentPosition.y = coordinateFlyTo.y;
                 currentPosition.z = coordinateFlyTo.z;
-                Console.WriteLine("Your flying is sucssesful!");
         }
 
         /// <summary>
@@ -35,17 +36,6 @@ namespace flying
         public double GetFlyTime(Cordinate3D coordinateFlyTo)
         {
             return ((int)(GetFlightDistance(coordinateFlyTo) / Speed * 6)) / 60.0 + GetFlightDistance(coordinateFlyTo) / Speed;
-        }
-
-        /// <summary>
-        /// Method counting distance between current position and position to fly
-        /// </summary>
-        /// <param name="coordinateFlyTo"></param>
-        /// <returns> Distance between current position and position to fly </returns>
-        public static double GetFlightDistance(Cordinate3D coordinateFlyTo)
-        {
-            return Math.Sqrt(Math.Pow(coordinateFlyTo.x - currentPosition.x, 2) + Math.Pow(coordinateFlyTo.y - currentPosition.y, 2)
-                + Math.Pow(coordinateFlyTo.z - currentPosition.z, 2));
         }
     }
 }
