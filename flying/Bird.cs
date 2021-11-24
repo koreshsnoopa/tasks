@@ -3,11 +3,11 @@ namespace flying
 {
     public class Bird : Flyable, IFlyable
     {
-        public const double MaxFlightTime = 4; // Maximum flight time
-        public const int MaxSpeed = 20; // Maximum speed
-        public const int MinSpeed = 0; // Minimum speed
+        private const double MaxFlightTime = 4; // Maximum flight time in hours
+        private const int MaxSpeed = 20; // Maximum speed in km/h
+        private const int MinSpeed = 1; // Minimum speed int km/h
 
-        public int Speed { get; set; }
+        public int Speed { get; private set; }
 
         public Bird(double x, double y, double z) : base(x, y, z)
         {
