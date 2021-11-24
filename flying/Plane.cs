@@ -4,12 +4,12 @@ namespace flying
 
     public class Plane : Flyable, IFlyable
     {
-        public const double Speed = 200; 
-        public const double MaxSpeed = 900; // Maximum speed
-        public const double MaxFlightDistance = 8000; // Maximum flight distance
-        public const double MinFlightDistance = 6; // Minimum flight distance
-        public const int DistanceToChangeSpeed = 10; 
-        public const int SpeedChangeBy = 10;
+        private const double Speed = 200; // Starting speed in km/h
+        private const double MaxSpeed = 900; // Maximum speed in km/h
+        private const double MaxFlightDistance = 8000; // Maximum flight distance in km
+        private const double MinFlightDistance = 6; // Minimum flight distance in km
+        private const int DistanceToChangeSpeed = 10; // Distance through which the speed changes in km
+        private const int SpeedChangeBy = 10; // How much the speed changes in km/h
 
         public Plane(double x, double y, double z) : base (x, y, z)
         {
