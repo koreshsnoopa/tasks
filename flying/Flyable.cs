@@ -3,13 +3,11 @@ namespace flying
 {
     public abstract class Flyable
     {
-        public static Cordinate3D currentPosition = new Cordinate3D();
+        public Cordinate3D currentPosition = new Cordinate3D();
 
-        protected Flyable(double x, double y, double z)
+        protected Flyable(Cordinate3D currentPosition)
         {
-            currentPosition.x = x;
-            currentPosition.y = y;
-            currentPosition.z = z;
+            this.currentPosition = currentPosition;
         }
 
         /// <summary>
@@ -17,7 +15,7 @@ namespace flying
         /// </summary>
         /// <param name="coordinateFlyTo"></param>
         /// <returns> Distance between current position and position to fly </returns>
-        protected static double GetFlightDistance(Cordinate3D coordinateFlyTo)
+        protected double GetFlightDistance(Cordinate3D coordinateFlyTo)
         {
             return Math.Sqrt(Math.Pow(coordinateFlyTo.x - currentPosition.x, 2) + Math.Pow(coordinateFlyTo.y - currentPosition.y, 2)
                 + Math.Pow(coordinateFlyTo.z - currentPosition.z, 2));
