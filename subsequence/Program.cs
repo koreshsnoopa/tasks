@@ -25,7 +25,7 @@ namespace subsequence
                 throw new ArgumentException("You can input only one string!");
             }
 
-            string str = args[0].Replace(" ", "").ToLower();
+            string str = args[0];
             int max = 0;
             int temp = 1;
 
