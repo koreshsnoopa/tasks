@@ -12,6 +12,12 @@ namespace converter
             try
             {
                 InputValidation(args);
+                char plusOrMinus = int.Parse(args[0]) >= 0 ? ' ' : '-';
+                int number = Math.Abs(int.Parse(args[0]));
+
+                int basis = int.Parse(args[1]);
+
+                Console.WriteLine($"Result: {plusOrMinus} {Converter(number, basis)}");
             }
             catch (ArgumentException ex)
             {
@@ -26,12 +32,6 @@ namespace converter
                 Console.WriteLine(ex.Message);
             }
 
-            char plusOrMinus = int.Parse(args[0]) >= 0 ? ' ' : '-';
-            int number = Math.Abs(int.Parse(args[0]));
-
-            int basis = int.Parse(args[1]);
-
-            Console.WriteLine($"Result: {plusOrMinus} {Converter(number, basis)}");
 
         }
 
