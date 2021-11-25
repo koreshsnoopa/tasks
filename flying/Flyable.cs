@@ -3,7 +3,7 @@ namespace flying
 {
     public abstract class Flyable
     {
-        public Cordinate3D currentPosition = new Cordinate3D();
+        public Cordinate3D currentPosition;
 
         protected Flyable(Cordinate3D currentPosition)
         {
