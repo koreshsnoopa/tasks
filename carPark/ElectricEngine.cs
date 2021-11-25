@@ -7,10 +7,6 @@
         {
         }
 
-        public ElectricEngine()
-        {
-        }
-
         public override string ToString()
         {
             return $"\nEngine:\nSerial number: {SerialNumber}" +

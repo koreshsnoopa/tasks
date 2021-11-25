@@ -6,10 +6,6 @@
         {
         }
 
-        public ReciprocatingEngine()
-        {
-        }
-
         public override string ToString()
         {
             return $"\nEngine:\nSerial number: {SerialNumber}" +

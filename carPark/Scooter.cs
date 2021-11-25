@@ -4,10 +4,10 @@ namespace carPark
     public class Scooter : Transport
     {
         public int NumberOfSeats { get; set; }
-        public ElectricEngine engine = new ElectricEngine();
+        public ElectricEngine engine;
 
         public Scooter(int numberOfSeats, ElectricEngine engine, Chassis chassis, Transmission transmission)
-            : base(transmission, chassis)
+            : base(transmission, chassis, engine)
         {
             NumberOfSeats = numberOfSeats;
             this.engine = engine;

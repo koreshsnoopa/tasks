@@ -4,10 +4,10 @@ namespace carPark
     public class Car : Transport
     {
         public string Color { get; set; }
-        public ElectricEngine engine = new ElectricEngine();
+        public ElectricEngine engine;
 
 
-        public Car(string color, ElectricEngine engine, Chassis chassis, Transmission transmission) : base(transmission, chassis)
+        public Car(string color, ElectricEngine engine, Chassis chassis, Transmission transmission) : base(transmission, chassis, engine)
         {
             Color = color;
             this.engine = engine;

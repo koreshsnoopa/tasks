@@ -4,10 +4,10 @@ namespace carPark
     public class Truck : Transport
     {
         public double TrunkVolume { get; set; }
-        public ReciprocatingEngine engine = new ReciprocatingEngine();
+        public ReciprocatingEngine engine;
 
         public Truck(double trunkVolume, ReciprocatingEngine engine, Chassis chassis, Transmission transmission)
-            : base(transmission, chassis)
+            : base(transmission, chassis, engine)
         {
             TrunkVolume = trunkVolume;
             this.engine = engine;

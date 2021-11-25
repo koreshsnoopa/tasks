@@ -6,10 +6,6 @@
         public string NumberOfChassis { get; set; }
         public double PermissibleLoad { get; set; }
 
-        public Chassis()
-        {
-        }
-
         public Chassis(int numberOfWheels, string numberOfChassis, double permissibleLoad)
         {
             NumberOfWheels = numberOfWheels;
