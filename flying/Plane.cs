@@ -11,7 +11,7 @@ namespace flying
         private const int DistanceToChangeSpeed = 10; // Distance through which the speed changes in km
         private const int SpeedChangeBy = 10; // How much the speed changes in km/h
 
-        public Plane(double x, double y, double z) : base (x, y, z)
+        public Plane(Cordinate3D currentPosition) : base(currentPosition)
         {
         }
 

@@ -9,7 +9,7 @@ namespace flying
 
         public int Speed { get; private set; }
 
-        public Bird(double x, double y, double z) : base(x, y, z)
+        public Bird(Cordinate3D currentPosition) : base(currentPosition)
         {
             Speed = SpeedGenerator();
         }

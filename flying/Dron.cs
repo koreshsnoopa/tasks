@@ -10,7 +10,7 @@ namespace flying
 
         public static double Speed { get; private set; }
 
-        public Dron(double x, double y, double z, double speed) : base(x, y, z)
+        public Dron(Cordinate3D currentPosition, double speed) : base(currentPosition)
         {
             if (speed == 0 || speed > MaxSpeed)
             {
