@@ -32,7 +32,6 @@ namespace converter
                 Console.WriteLine(ex.Message);
             }
 
-
         }
 
         static string Converter(int number, int basis)
@@ -45,12 +44,6 @@ namespace converter
 
             do
             {
-                if (i + 1 == res.Length)
-                {
-                    res[i] = number % basis < 10 ? (char)(48 + number) : (char)(55 + number); // 48 and 55 is ASCII
-                    break;
-                }
-
                 res[i] = number % basis < 10 ? (char)(48 + number % basis) : (char)(55 + number % basis); // 48 and 55 is ASCII
                 number /= basis;
                 i++;
