@@ -26,10 +26,10 @@ namespace converter
                 Console.WriteLine(ex.Message);
             }
 
-            char plusOrMinus = Convert.ToInt32(args[0]) >= 0 ? ' ' : '-';
-            int number = Math.Abs(Convert.ToInt32(args[0]));
+            char plusOrMinus = int.Parse(args[0]) >= 0 ? ' ' : '-';
+            int number = Math.Abs(int.Parse(args[0]));
 
-            int basis = Convert.ToInt32(args[1]);
+            int basis = int.Parse(args[1]);
 
             Console.WriteLine($"Result: {plusOrMinus} {Converter(number, basis)}");
 
@@ -74,7 +74,7 @@ namespace converter
                 throw new InvalidCastException("You can input only numbers: number and base of another system!");
             }
 
-            if (Convert.ToInt32(args[1]) > 20 || Convert.ToInt32(args[1]) < 2)
+            if (int.Parse(args[1]) > 20 || int.Parse(args[1]) < 2)
             {
                 throw new ArgumentException($"Base of another system can only be greater than {minBasis} and less than or equal to {maxBasis}!");
             }
