@@ -4,6 +4,7 @@
     {
         public ReciprocatingEngine(string serialNumber, double power, double volume) : base(serialNumber, power, volume)
         {
+            EngineType = "ReciprocatingEngine";
         }
 
         public override string ToString()
