@@ -1,8 +1,12 @@
 ﻿using System;
 namespace collections
 {
+    [Serializable]
     public class ElectricEngine : Engine
     {
+        public ElectricEngine()
+        {
+        }
 
         public ElectricEngine(string serialNumber, double power, double volume) : base(serialNumber, power, volume)
         { 

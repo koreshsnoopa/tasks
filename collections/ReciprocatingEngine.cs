@@ -1,8 +1,13 @@
 ﻿using System;
 namespace collections
 {
+    [Serializable]
     public class ReciprocatingEngine : Engine
     {
+        public ReciprocatingEngine()
+        {
+        }
+
         public ReciprocatingEngine(string serialNumber, double power, double volume) : base(serialNumber, power, volume)
         {
             EngineType = "ReciprocatingEngine";

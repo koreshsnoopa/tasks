@@ -1,11 +1,16 @@
 ﻿using System;
 namespace collections
 {
+    [Serializable]
     public class Chassis
     {
         public int NumberOfWheels { get; set; }
         public string NumberOfChassis { get; set; }
         public double PermissibleLoad { get; set; }
+
+        public Chassis()
+        {
+        }
 
         public Chassis(int numberOfWheels, string numberOfChassis, double permissibleLoad)
         {

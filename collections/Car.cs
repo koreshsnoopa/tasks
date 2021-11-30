@@ -1,10 +1,14 @@
 ﻿using System;
 namespace collections
 {
+    [Serializable]
     public class Car : Transport
     {
         public string Color { get; set; }
 
+        public Car()
+        {
+        }
 
         public Car(string color, ElectricEngine engine, Chassis chassis, Transmission transmission) :
             base(transmission, chassis, engine)

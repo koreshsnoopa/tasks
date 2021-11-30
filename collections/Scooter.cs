@@ -1,10 +1,15 @@
 ﻿using System;
 namespace collections
 {
+    [Serializable]
     public class Scooter : Transport
     {
         public int NumberOfSeats { get; set; }
         public ElectricEngine engine;
+
+        public Scooter()
+        {
+        }
 
         public Scooter(int numberOfSeats, ElectricEngine engine, Chassis chassis, Transmission transmission)
             : base(transmission, chassis, engine)
