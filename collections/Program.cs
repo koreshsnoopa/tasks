@@ -22,12 +22,10 @@ namespace collections
                         new Transmission("Manual", 6, "Hyundai"))
             };
 
-            //first
             var transWithBigEngine = transports.Where(x => x.engine.Volume > 1.5).ToList();
 
             CreateAndFillXML(transWithBigEngine, "TransportsWithBigEngine2");
 
-            //second
             XDocument xdoc = new XDocument(new XElement("TruckAndBusEngines",
             transports.Where(x => x.GetType() == typeof(Truck) || x.GetType() == typeof(Bus))
             .ToList().Select(t =>
@@ -38,7 +36,6 @@ namespace collections
 
              xdoc.Save("TnBEngines.xml");
 
-            //third
             var groupedTransport = transports.GroupBy(x => x.transmission.TypeOfTransmission)
             .Select(g => new HelpGroup() { GroupName = g.Key, Transports = g.ToList() })
             .ToList();
