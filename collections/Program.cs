@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -24,12 +23,9 @@ namespace collections
             };
 
             //first
-            XmlSerializer formatter = new XmlSerializer(typeof(List<Transport>));
-            
-            using (FileStream fs = new FileStream("TransportsWithBigEngine.xml", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, transports.Where(x => x.engine.Volume > 1.5).ToList());
-            }
+            var transWithBigEngine = transports.Where(x => x.engine.Volume > 1.5).ToList();
+
+            CreateAndFillXML(transWithBigEngine, "TransportsWithBigEngine2");
 
             //second
             XDocument xdoc = new XDocument(new XElement("TruckAndBusEngines",
@@ -43,15 +39,21 @@ namespace collections
              xdoc.Save("TnBEngines.xml");
 
             //third
-            XmlSerializer formatter2 = new XmlSerializer(typeof(List<HelpGroup>));
-
-            using (FileStream fss = new FileStream("GroupedTransport.xml", FileMode.OpenOrCreate))
-            {
-                formatter2.Serialize(fss, transports.GroupBy(x => x.transmission.TypeOfTransmission)
+            var groupedTransport = transports.GroupBy(x => x.transmission.TypeOfTransmission)
             .Select(g => new HelpGroup() { GroupName = g.Key, Transports = g.ToList() })
-            .ToList());
-            }
+            .ToList();
 
+            CreateAndFillXML(transWithBigEngine, "GroupedTransport");
+        }
+
+        static void CreateAndFillXML(Object list, string name)
+        {
+            XmlSerializer formatter = new XmlSerializer(list.GetType());
+
+            using (FileStream fs = new FileStream($"{name}.xml", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, list);
+            }
         }
     }
 }
