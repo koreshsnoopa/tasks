@@ -5,7 +5,6 @@ namespace collections
     public class Scooter : Transport
     {
         public int NumberOfSeats { get; set; }
-        public ElectricEngine engine;
 
         public Scooter()
         {
@@ -15,7 +14,6 @@ namespace collections
             : base(transmission, chassis, engine)
         {
             NumberOfSeats = numberOfSeats;
-            this.engine = engine;
         }
 
         public override string ToString()

@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Xml.Serialization;
+
 namespace collections
 {
+    [XmlInclude(typeof(Car)), XmlInclude(typeof(Bus)),
+        XmlInclude(typeof(Scooter)), XmlInclude(typeof(Truck))]
     [Serializable]
     public abstract class Transport
     {

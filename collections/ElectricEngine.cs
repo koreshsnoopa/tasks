@@ -9,7 +9,8 @@ namespace collections
         }
 
         public ElectricEngine(string serialNumber, double power, double volume) : base(serialNumber, power, volume)
-        { 
+        {
+            EngineType = "ElectricEngine";
         }
 
         public override string ToString()

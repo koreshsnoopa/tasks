@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Xml.Serialization;
+
 namespace collections
 {
+    
     [Serializable]
     public class Car : Transport
     {
@@ -10,7 +13,7 @@ namespace collections
         {
         }
 
-        public Car(string color, ElectricEngine engine, Chassis chassis, Transmission transmission) :
+        public Car(string color, Engine engine, Chassis chassis, Transmission transmission) :
             base(transmission, chassis, engine)
         {
             Color = color;

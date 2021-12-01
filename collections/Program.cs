@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Linq;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace collections
 {
@@ -20,8 +23,35 @@ namespace collections
                         new Transmission("Manual", 6, "Hyundai"))
             };
 
+            //first
+            XmlSerializer formatter = new XmlSerializer(typeof(List<Transport>));
             
-            
+            using (FileStream fs = new FileStream("TransportsWithBigEngine.xml", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, transports.Where(x => x.engine.Volume > 1.5).ToList());
+            }
+
+            //second
+            XDocument xdoc = new XDocument(new XElement("TruckAndBusEngines",
+            transports.Where(x => x.GetType() == typeof(Truck) || x.GetType() == typeof(Bus))
+            .ToList().Select(t =>
+             new XElement("TypeOfTransport", t.GetType().Name.ToString(),
+             new XElement("TypeOfEngine", t.engine.EngineType),
+             new XElement("EnginePower", t.engine.Power),
+             new XElement("SerialNumber", t.engine.SerialNumber)))));
+
+             xdoc.Save("TnBEngines.xml");
+
+            //third
+            XmlSerializer formatter2 = new XmlSerializer(typeof(List<HelpGroup>));
+
+            using (FileStream fss = new FileStream("GroupedTransport.xml", FileMode.OpenOrCreate))
+            {
+                formatter2.Serialize(fss, transports.GroupBy(x => x.transmission.TypeOfTransmission)
+            .Select(g => new HelpGroup() { GroupName = g.Key, Transports = g.ToList() })
+            .ToList());
+            }
+
         }
     }
 }
