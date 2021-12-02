@@ -24,7 +24,14 @@ namespace collections
 
             var transWithBigEngine = transports.Where(x => x.engine.Volume > 1.5).ToList();
 
-            CreateAndFillXML(transWithBigEngine, "TransportsWithBigEngine2");
+            try
+            {
+                CreateAndFillXML(transWithBigEngine, "TransportsWithBigEngine2");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             XDocument xdoc = new XDocument(new XElement("TruckAndBusEngines",
             transports.Where(x => x.GetType() == typeof(Truck) || x.GetType() == typeof(Bus))
@@ -40,11 +47,22 @@ namespace collections
             .Select(g => new HelpGroup() { GroupName = g.Key, Transports = g.ToList() })
             .ToList();
 
-            CreateAndFillXML(transWithBigEngine, "GroupedTransport");
+            try
+            {
+                CreateAndFillXML(transWithBigEngine, "GroupedTransport");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         static void CreateAndFillXML(Object list, string name)
         {
+            if (list == null || String.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException("Name of file or list is empty!");
+            }
             XmlSerializer formatter = new XmlSerializer(list.GetType());
 
             using (FileStream fs = new FileStream($"{name}.xml", FileMode.OpenOrCreate))
