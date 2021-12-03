@@ -6,7 +6,6 @@ namespace carPark
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }
