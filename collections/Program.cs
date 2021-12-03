@@ -9,6 +9,8 @@ namespace collections
 {
     class Program
     {
+        static double EngineVolume = 1.5;
+
         static void Main(string[] args)
         {
             List<Transport> transports = new List<Transport> {
@@ -22,7 +24,7 @@ namespace collections
                         new Transmission("Manual", 6, "Hyundai"))
             };
 
-            var transWithBigEngine = transports.Where(x => x.engine.Volume > 1.5).ToList();
+            var transWithBigEngine = transports.Where(x => x.engine.Volume > EngineVolume).ToList();
 
             try
             {
@@ -37,9 +39,10 @@ namespace collections
             transports.Where(x => x.GetType() == typeof(Truck) || x.GetType() == typeof(Bus))
             .ToList().Select(t =>
              new XElement("TypeOfTransport", t.GetType().Name.ToString(),
-             new XElement("TypeOfEngine", t.engine.EngineType),
+             new XElement[] {new XElement("TypeOfEngine", t.engine.EngineType),
              new XElement("EnginePower", t.engine.Power),
-             new XElement("SerialNumber", t.engine.SerialNumber)))));
+             new XElement("SerialNumber", t.engine.SerialNumber) }
+             ))));
 
              xdoc.Save("TnBEngines.xml");
 
@@ -63,6 +66,7 @@ namespace collections
             {
                 throw new ArgumentException("Name of file or list is empty!");
             }
+
             XmlSerializer formatter = new XmlSerializer(list.GetType());
 
             using (FileStream fs = new FileStream($"{name}.xml", FileMode.OpenOrCreate))
