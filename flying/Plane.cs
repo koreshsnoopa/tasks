@@ -59,7 +59,7 @@ namespace flying
         }
 
         /// <summary>
-        /// Method counting sum of time than plane flying with unequal speeds
+        /// Method counting sum of time that plane flying with unequal speeds
         /// </summary>
         /// <param name="n"></param>
         /// <returns> sum </returns>

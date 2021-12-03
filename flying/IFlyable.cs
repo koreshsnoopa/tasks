@@ -1,5 +1,4 @@
-﻿using System;
-namespace flying
+﻿namespace flying
 {
     public interface IFlyable
     {
