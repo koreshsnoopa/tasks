@@ -67,7 +67,7 @@ namespace converter
                 throw new InvalidCastException("You can input only numbers: number and base of another system!");
             }
 
-            if (int.Parse(args[1]) > 20 || int.Parse(args[1]) < 2)
+            if (int.Parse(args[1]) > maxBasis || int.Parse(args[1]) < minBasis)
             {
                 throw new ArgumentException($"Base of another system can only be greater than {minBasis} and less than or equal to {maxBasis}!");
             }
