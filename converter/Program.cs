@@ -17,7 +17,7 @@ namespace converter
 
                 int basis = int.Parse(args[1]);
 
-                Console.WriteLine($"Result: {plusOrMinus} {Converter(number, basis)}");
+                Console.WriteLine($"Result: {plusOrMinus} {ConverterNumberToSpecifiedNumberSystem(number, basis)}");
             }
             catch (ArgumentException ex)
             {
@@ -34,7 +34,7 @@ namespace converter
 
         }
 
-        static string Converter(int number, int basis)
+        static string ConverterNumberToSpecifiedNumberSystem(int number, int basis)
         {
             int size = number > 0 ? (int)Math.Log(number, basis) + 1 : 1;
 
