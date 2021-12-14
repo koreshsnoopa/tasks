@@ -8,7 +8,7 @@ namespace flying
         private const int StopTime = 1; // Stop time in minutes
         private const int Interval = 10; // Interval of stops in minutes
 
-        public static double Speed { get; private set; }
+        public double Speed { get; private set; }
 
         public Dron(Cordinate3D currentPosition, double speed) : base(currentPosition)
         {
