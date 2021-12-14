@@ -1,4 +1,6 @@
-﻿namespace carPark
+﻿using System;
+
+namespace carPark
 {
     public abstract class Engine
     {
@@ -9,9 +11,33 @@
 
         public Engine(string serialNumber, double power, double volume)
         {
-            SerialNumber = serialNumber;
-            Power = power;
-            Volume = volume;
+            
+            if (String.IsNullOrEmpty(serialNumber))
+            {
+                throw new ArgumentException("You need to enter serial number of engine!");
+            }
+            else
+            {
+                SerialNumber = serialNumber;
+            }
+
+            if (power > 0)
+            {
+                Power = power;
+            }
+            else
+            {
+                throw new ArgumentException("Power of engine must be more then 0!");
+            }
+
+            if (volume > 0)
+            {
+                Volume = volume;
+            }
+            else
+            {
+                throw new ArgumentException("Volume of engine must be more then 0!");
+            }
         }
 
         public Engine()

@@ -8,7 +8,14 @@ namespace carPark
 
         public Car(string color, ElectricEngine engine, Chassis chassis, Transmission transmission) : base(transmission, chassis, engine)
         {
-            Color = color;
+            if (String.IsNullOrEmpty(color))
+            {
+                throw new ArgumentNullException("You need to input car color!");
+            }
+            else
+            {
+                Color = color;
+            }
         }
 
         public override string ToString()

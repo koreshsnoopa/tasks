@@ -9,7 +9,14 @@ namespace carPark
         public Bus(ReciprocatingEngine engine, string routeNumber, Transmission transmission, Chassis chassis)
             : base(transmission, chassis, engine)
         {
-            RouteNumber = routeNumber;
+            if (String.IsNullOrEmpty(routeNumber))
+            {
+                throw new ArgumentNullException("You need to input route number!");
+            }
+            else
+            {
+                RouteNumber = routeNumber;
+            }
         }
 
         public override string ToString()

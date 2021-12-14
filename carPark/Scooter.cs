@@ -8,7 +8,14 @@ namespace carPark
         public Scooter(int numberOfSeats, ElectricEngine engine, Chassis chassis, Transmission transmission)
             : base(transmission, chassis, engine)
         {
-            NumberOfSeats = numberOfSeats;
+            if (numberOfSeats > 0)
+            {
+                NumberOfSeats = numberOfSeats;
+            }
+            else
+            {
+                throw new ArgumentException("Number of seats must be more then 0!");
+            }
         }
 
         public override string ToString()

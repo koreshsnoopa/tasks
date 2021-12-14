@@ -8,7 +8,15 @@ namespace carPark
         public Truck(double trunkVolume, ReciprocatingEngine engine, Chassis chassis, Transmission transmission)
             : base(transmission, chassis, engine)
         {
-            TrunkVolume = trunkVolume;
+
+            if (trunkVolume > 0)
+            {
+                TrunkVolume = trunkVolume;
+            }
+            else
+            {
+                throw new ArgumentException("Volume of trunk must be more then 0!");
+            }
         }
 
         public override string ToString()

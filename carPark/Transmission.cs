@@ -1,4 +1,6 @@
-﻿namespace carPark
+﻿using System;
+
+namespace carPark
 {
     public class Transmission
     {
@@ -8,9 +10,33 @@
 
         public Transmission(string typeOfTransmission, int numberOfGears, string manufacturer)
         {
-            TypeOfTransmission = typeOfTransmission;
-            NumberOfGears = numberOfGears;
-            Manufacturer = manufacturer;
+
+            if (String.IsNullOrEmpty(typeOfTransmission))
+            {
+                throw new ArgumentException("You need to enter type of transmission!");
+            }
+            else
+            {
+                TypeOfTransmission = typeOfTransmission;
+            }
+
+            if (numberOfGears > 0)
+            {
+                NumberOfGears = numberOfGears;
+            }
+            else
+            {
+                throw new ArgumentException("Number of gears must be more then 0!");
+            }
+
+            if (String.IsNullOrEmpty(manufacturer))
+            {
+                throw new ArgumentException("You need to enter manufacturer!");
+            }
+            else
+            {
+                Manufacturer = manufacturer;
+            }
         }
 
         public override string ToString()

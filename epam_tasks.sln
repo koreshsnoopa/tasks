@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.810.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "epam_tasks", "epam_tasks\epam_tasks.csproj", "{4B8D86F2-E736-45F0-B66C-1D1DAE3C926C}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "epam_tasks", "epam_tasks\epam_tasks.csproj", "{2C94BAFD-1BC5-420E-9540-8314122F2756}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "carPark", "carPark\carPark.csproj", "{B7C5C71B-864D-42B3-8FAB-3FDED8102895}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "carPark", "carPark\carPark.csproj", "{7C259866-78AC-49A8-A487-17DEB229C271}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4B8D86F2-E736-45F0-B66C-1D1DAE3C926C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B8D86F2-E736-45F0-B66C-1D1DAE3C926C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B8D86F2-E736-45F0-B66C-1D1DAE3C926C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B8D86F2-E736-45F0-B66C-1D1DAE3C926C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7C5C71B-864D-42B3-8FAB-3FDED8102895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7C5C71B-864D-42B3-8FAB-3FDED8102895}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7C5C71B-864D-42B3-8FAB-3FDED8102895}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7C5C71B-864D-42B3-8FAB-3FDED8102895}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C94BAFD-1BC5-420E-9540-8314122F2756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C94BAFD-1BC5-420E-9540-8314122F2756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C94BAFD-1BC5-420E-9540-8314122F2756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C94BAFD-1BC5-420E-9540-8314122F2756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C259866-78AC-49A8-A487-17DEB229C271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C259866-78AC-49A8-A487-17DEB229C271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C259866-78AC-49A8-A487-17DEB229C271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C259866-78AC-49A8-A487-17DEB229C271}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
