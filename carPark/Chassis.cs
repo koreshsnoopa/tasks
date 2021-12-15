@@ -1,4 +1,6 @@
-﻿namespace carPark
+﻿using System;
+
+namespace carPark
 {
     public class Chassis
     {
@@ -8,9 +10,32 @@
 
         public Chassis(int numberOfWheels, string numberOfChassis, double permissibleLoad)
         {
-            NumberOfWheels = numberOfWheels;
-            NumberOfChassis = numberOfChassis;
-            PermissibleLoad = permissibleLoad;
+            if (numberOfWheels > 0)
+            {
+                NumberOfWheels = numberOfWheels;
+            }
+            else
+            {
+                throw new ArgumentException("Number of wheels must be more then 0!");
+            }
+
+            if (String.IsNullOrEmpty(numberOfChassis))
+            {
+                throw new ArgumentException("You need to enter number of chassis!");
+            }
+            else
+            {
+                NumberOfChassis = numberOfChassis;
+            }
+
+            if (numberOfWheels > 0)
+            {
+                PermissibleLoad = permissibleLoad;
+            }
+            else
+            {
+                throw new ArgumentException("Permissible load must be more then 0!");
+            }
         }
 
         public override string ToString()
