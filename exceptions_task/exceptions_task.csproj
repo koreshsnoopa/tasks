@@ -10,7 +10,7 @@
     <None Remove="My Exceptions\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Car Park\" />
+    <Folder Include="CarPark\" />
     <Folder Include="My Exceptions\" />
   </ItemGroup>
 </Project>
