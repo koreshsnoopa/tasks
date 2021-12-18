@@ -11,6 +11,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CarPark\" />
-    <Folder Include="My Exceptions\" />
+    <Folder Include="MyExceptions\" />
   </ItemGroup>
 </Project>
