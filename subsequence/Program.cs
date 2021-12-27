@@ -9,13 +9,12 @@ namespace subsequence
             try
             {
                 GetlenghthOfMaxUnequalSubsequence(args);
+                Console.WriteLine($"Length of max subsequence unequal signs: {GetlenghthOfMaxUnequalSubsequence(args)}");
             }
             catch (ArgumentException ex)
             {
                 Console.WriteLine($"Exeption: {ex.Message}");
             }
-
-            Console.WriteLine($"Length of max subsequence unequal signs: {GetlenghthOfMaxUnequalSubsequence(args)}");
         }
 
         static int GetlenghthOfMaxUnequalSubsequence(string[] args)
@@ -28,11 +27,6 @@ namespace subsequence
             string str = args[0];
             int max = 1;
             int temp = 1;
-
-            if (String.IsNullOrEmpty(str))
-            {
-                return 0;
-            }
 
             for (int i = 0; i < str.Length - 1; i++)
             {
