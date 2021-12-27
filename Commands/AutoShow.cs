@@ -61,6 +61,14 @@ namespace Commands
             {
                 throw new IndexOutOfRangeException("Auto show has no autos!");
             }
+            if (String.IsNullOrEmpty(brand))
+            {
+                throw new ArgumentException("Need to input type!");
+            }
+            if (Autos.Where(x => x.Brand.ToLower() == brand.ToLower()).ToList().Count() == 0)
+            {
+                throw new IndexOutOfRangeException("There is no autos of such type!");
+            }
 
             double sumPrice = 0;
             Autos.Where(x => x.Brand.ToLower() == brand.ToLower()).ToList().ForEach(x => sumPrice += x.Price);

@@ -37,7 +37,7 @@ namespace Commands
                 Amount = amount;
             }
 
-            if (amount <= 0)
+            if (price <= 0)
             {
                 throw new ArgumentException("Price of auto must be more than 0!");
             }
