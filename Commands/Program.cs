@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace Commands
 {
@@ -9,33 +8,17 @@ namespace Commands
         {
             bool isYes = true;
             AutoShow autoShow = AutoShow.GetInstance();
-            string temp;
             string? enteredString;
             string[] parameters;
             do
             {
-                Console.WriteLine("Enter information about the car in the form: brand, model, quantity, cost.");
-                enteredString = Console.ReadLine();
-                parameters = TransformInput(enteredString);
                 try
                 {
-                    autoShow.Autos.Add(new Car(parameters[0], parameters[1], int.Parse(parameters[2]), double.Parse(parameters[3])));
-                }
-                catch (ArgumentException ex)
-                {
-                    Console.WriteLine($"Exception: {ex.Message}");
-                }
-                catch (InvalidCastException ex)
-                {
-                    Console.WriteLine($"Exception: {ex.Message}");
-                }
-              
-                try
-                {
-                    Console.WriteLine("Do you want to add another car?\n1. Yes\n2. No");
+                    Console.WriteLine("Do you want to add a car?\n1. Yes\n2. No");
                     if (InputCheckout(2, Console.ReadLine()) == 2)
                     {
                         isYes = false;
+                        break;
                     }
                 }
                 catch (ArgumentNullException ex)
@@ -47,8 +30,27 @@ namespace Commands
                     Console.WriteLine($"Exception: {ex.Message}");
                 }
 
+                Console.WriteLine("Enter information about the car in the form: brand, model, quantity, cost.");
+                enteredString = Console.ReadLine();
+                parameters = TransformInput(enteredString);
+
+                try
+                {
+                    autoShow.Autos.Add(new Car(parameters[0], parameters[1], int.Parse(parameters[2]), double.Parse(parameters[3])));
+
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine($"Exception: {ex.Message}");
+                }
+                catch (InvalidCastException ex)
+                {
+                    Console.WriteLine($"Exception: {ex.Message}");
+                }
             }
             while (isYes);
+
+            if (autoShow.Autos.Count == 0) return;
 
             isYes = true;
             int numberOfCommand = 0;
@@ -74,8 +76,6 @@ namespace Commands
                 if (numberOfCommand == 5) break;
             }
             while (isYes);
-
-            Console.WriteLine("qw");
         }
 
         static void ChooseCommandFromMenu(int numberOfCommand, AutoShow autoShow, Invoker invoker)
