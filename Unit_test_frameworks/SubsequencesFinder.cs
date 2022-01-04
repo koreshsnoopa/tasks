@@ -16,7 +16,7 @@ namespace Unit_test_frameworks
 
         public int FindlenghthOfMaxUnequalSubsequence()
         {
-            int max = 0;
+            int max = 1;
             int temp = 1;
 
             for (int i = 0; i < FirstString.Length - 1; i++)
@@ -38,7 +38,7 @@ namespace Unit_test_frameworks
 
         public int FindlenghthOfMaxEqualSubsequenceLatinLetters()
         {
-            int max = 0;
+            int max = 1;
             int temp = 1;
             string str = FirstString.ToLower();
 
@@ -61,13 +61,12 @@ namespace Unit_test_frameworks
 
         public int FindlenghthOfMaxEqualSubsequenceNembers()
         {
-            int max = 0;
+            int max = 1;
             int temp = 1;
-            string str = FirstString.ToLower();
 
-            for (int i = 0; i < str.Length - 1; i++)
+            for (int i = 0; i < FirstString.Length - 1; i++)
             {
-                if (str[i] == str[i + 1] && int.TryParse(str[i].ToString(), out int n))
+                if (FirstString[i] == FirstString[i + 1] && int.TryParse(FirstString[i].ToString(), out int n))
                 {
                     temp++;
                     if (temp > max)
