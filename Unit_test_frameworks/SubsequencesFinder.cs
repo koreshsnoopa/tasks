@@ -4,17 +4,18 @@ namespace Unit_test_frameworks
 {
     public class SubsequencesFinder
     {
-        string FirstString;
+        public string FirstString;
+
         public SubsequencesFinder(string FirstString)
         {
-            if(string.IsNullOrEmpty(FirstString))
+            if (String.IsNullOrEmpty(FirstString))
             {
-                throw new ArgumentNullException("String can't be empty!");
+                throw new ArgumentException("String can't be null or empty!");
             }
-            this.FirstString = FirstString;
+            else this.FirstString = FirstString;
         }
 
-        public int FindlenghthOfMaxUnequalSubsequence()
+        public int GetlenghthOfMaxUnequalSubseq()
         {
             int max = 1;
             int temp = 1;
@@ -36,9 +37,9 @@ namespace Unit_test_frameworks
             return max;
         }
 
-        public int FindlenghthOfMaxEqualSubsequenceLatinLetters()
+        public int GetlenghthOfMaxEqualSubseqLatinLetters()
         {
-            int max = 1;
+            int max = 0;
             int temp = 1;
             string str = FirstString.ToLower();
 
@@ -59,9 +60,9 @@ namespace Unit_test_frameworks
             return max;
         }
 
-        public int FindlenghthOfMaxEqualSubsequenceNembers()
+        public int GetlenghthOfMaxEqualSubseqNembers()
         {
-            int max = 1;
+            int max = 0;
             int temp = 1;
 
             for (int i = 0; i < FirstString.Length - 1; i++)
