@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.810.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "epam_tasks", "epam_tasks\epam_tasks.csproj", "{4B8D86F2-E736-45F0-B66C-1D1DAE3C926C}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "epam_tasks", "epam_tasks\epam_tasks.csproj", "{26044474-2A32-400B-B509-3136C1244A69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Locators", "Locators\Locators.csproj", "{2055C46C-192A-4746-A537-079026FA374A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4B8D86F2-E736-45F0-B66C-1D1DAE3C926C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B8D86F2-E736-45F0-B66C-1D1DAE3C926C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B8D86F2-E736-45F0-B66C-1D1DAE3C926C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B8D86F2-E736-45F0-B66C-1D1DAE3C926C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26044474-2A32-400B-B509-3136C1244A69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26044474-2A32-400B-B509-3136C1244A69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26044474-2A32-400B-B509-3136C1244A69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26044474-2A32-400B-B509-3136C1244A69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2055C46C-192A-4746-A537-079026FA374A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2055C46C-192A-4746-A537-079026FA374A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2055C46C-192A-4746-A537-079026FA374A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2055C46C-192A-4746-A537-079026FA374A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
