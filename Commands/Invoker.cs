@@ -1,5 +1,4 @@
-﻿using System;
-namespace Commands
+﻿namespace Commands
 {
     public class Invoker
     {
