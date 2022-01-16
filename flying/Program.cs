@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace epam_tasks
+namespace flying
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }
