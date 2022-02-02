@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Threading;
+using NLog;
 using OpenQA.Selenium;
 
 namespace selenium_task_tests
@@ -27,6 +28,7 @@ namespace selenium_task_tests
         IWebElement _mailTextField;
         IWebElement _settingsButton;
         IWebElement _allSettings;
+        Logger logger = LogManager.GetCurrentClassLogger();
 
         public MailsPage(IWebDriver driver) : base(driver)
         {
@@ -37,6 +39,10 @@ namespace selenium_task_tests
 
         public void InputReciverUsername(string username)
         {
+            if (string.IsNullOrEmpty(username) || !Regex.IsMatch(username, pattern, RegexOptions.IgnoreCase))
+            {
+                throw new ArgumentException("Reciver's username is not valid!");
+            }
             _newMailButton.Click();
             _reciverUsernameInput = FindElementByXPath(ReciverUsernameXPath);
             _reciverUsernameInput.SendKeys(username);
@@ -50,31 +56,61 @@ namespace selenium_task_tests
 
         public void InputMailsMessage(string message)
         {
+            if (string.IsNullOrEmpty(message))
+            {
+                throw new ArgumentException("Message can't be empty!");
+            }
             _messageInputField = FindElementByXPath(MessageInputXPath);
             _messageInputField.SendKeys(message);
         }
 
         public void SendEmail(string username, string theme, string message)
         {
-            if (string.IsNullOrEmpty(username) || !Regex.IsMatch(username, pattern, RegexOptions.IgnoreCase))
+            try
             {
-                throw new ArgumentException("Reciver's username is not valid!");
+                InputReciverUsername(username);
             }
-            InputReciverUsername(username);
-            InputMailsTheme(theme);
-            InputMailsMessage(message);
+            catch (ArgumentException ex)
+            {
+                logger.Error($"Message is not sended: {ex.Message}");
+            }
+            try
+            {
+                InputMailsMessage(message);
+            }
+            catch (ArgumentException ex)
+            {
+                logger.Error($"Message is not sended: {ex.Message}");
+            }
 
+            InputMailsTheme(theme);
             _sendButton = FindElementByXPath(SendButtonXPath);
             _sendButton.Click();
+            logger.Info($"Message to: {username} is sended seccessfylly");
         }
 
         public void SendEmail(string username, string message)
         {
-            InputReciverUsername(username);
-            InputMailsMessage(message);
+            try
+            {
+                InputReciverUsername(username);
+            }
+            catch (ArgumentException ex)
+            {
+                logger.Error($"Message is not sended: {ex.Message}");
+            }
+            try
+            {
+                InputMailsMessage(message);
+            }
+            catch (ArgumentException ex)
+            {
+                logger.Error($"Message is not sended: {ex.Message}");
+            }
 
             _sendButton = FindElementByXPath(SendButtonXPath);
             _sendButton.Click();
+            logger.Info($"Message to: {username} is sended seccessfylly");
         }
 
         public string ReadTheMailAndGetText(int numberOfMail)

@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using NLog;
+using OpenQA.Selenium;
 
 namespace selenium_task_tests
 {
@@ -9,6 +11,7 @@ namespace selenium_task_tests
 
         IWebElement _nameInput;
         IWebElement _saveChagesButton;
+        Logger logger = LogManager.GetCurrentClassLogger();
 
         public SettingSenderInformation(IWebDriver driver) : base(driver)
         {
@@ -21,12 +24,19 @@ namespace selenium_task_tests
             return name;
         }
 
-        public void ChangeName(string newName)
+        public void ChangeName(string newName, User user)
         {
+            if (string.IsNullOrEmpty(newName))
+            {
+                logger.Error("Name is not changed: New name is empty!");
+                throw new ArgumentException("New name is empty!");
+            }
             _nameInput.Clear();
             _nameInput.SendKeys(newName);
             _saveChagesButton = FindElementByXPath(SaveChangesButtonXPath);
+            user.ChangeName(newName);
             _saveChagesButton.Click();
+            logger.Info($"Name is changed: New name {user.Name}");
         }
     }
 }

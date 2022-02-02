@@ -12,6 +12,10 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="Selenium.WebDriver" Version="4.1.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="97.0.4692.7100" />
+    <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.27.0" />
+    <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.30.0.1" />
+    <PackageReference Include="NLog" Version="4.7.13" />
+    <PackageReference Include="NLog.Config" Version="4.7.13" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,10 +24,18 @@
     <None Remove="Pages\" />
     <None Remove="Pages\yahooMail\" />
     <None Remove="Pages\yandexMail\" />
+    <None Remove="Selenium.Firefox.WebDriver" />
+    <None Remove="Selenium.WebDriver.GeckoDriver" />
+    <None Remove="NLog" />
+    <None Remove="NLog.Config" />
+    <None Remove="Driver\" />
+    <None Remove="Model\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
     <Folder Include="Pages\yahooMail\" />
     <Folder Include="Pages\yandexMail\" />
+    <Folder Include="Driver\" />
+    <Folder Include="Model\" />
   </ItemGroup>
 </Project>

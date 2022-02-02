@@ -1,13 +1,15 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using NLog;
+using OpenQA.Selenium;
 
 namespace selenium_task_tests
 {
     public class YahooMailPage : WebPage
     {
+        
         static string NewMailButtonXPath = "//a[@data-test-id='compose-button']";
         static string NumberOfMailsXPath = "//span[contains(@title,'Inbox')]/following-sibling::span/span";
         static string LastInboxMailXPath = "//li[count(a[@role])=1][1]";
-        static string MailsXPath = "//li[count(a[@role])=1]";
         static string MailsTextXPath = "//div[contains(@class,'msg-body')]/descendant::div[4]";
 
         IWebElement _newMailButton;
@@ -15,6 +17,7 @@ namespace selenium_task_tests
         IWebElement _lastInboxMail;
         IWebElement _mail;
         IWebElement _mailsText;
+        Logger logger = LogManager.GetCurrentClassLogger();
 
         public YahooMailPage(IWebDriver driver) : base(driver)
         {
@@ -28,7 +31,31 @@ namespace selenium_task_tests
             _newMailButton.Click();
             var writeMailPage = new YahooWriteMailPage(_driver);
 
-            writeMailPage.SendEmail(username, theme, message);
+            try
+            {
+                writeMailPage.SendEmail(username, theme, message);
+                logger.Info($"Message to: {username} is sended seccessfylly");
+            }
+            catch (ArgumentException ex)
+            {
+                logger.Error($"Message is not sended: {ex.Message}");
+            }
+        }
+
+        public void WriteMail(string username, string message)
+        {
+            _newMailButton.Click();
+            var writeMailPage = new YahooWriteMailPage(_driver);
+
+            try
+            {
+                writeMailPage.SendEmail(username, message);
+                logger.Info($"Message to: {username} is sended seccessfylly");
+            }
+            catch (ArgumentException ex)
+            {
+                logger.Error($"Message is not sended: {ex.Message}");
+            }
         }
 
         public int GetNumberOfMails()
