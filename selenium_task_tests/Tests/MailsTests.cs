@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace selenium_task_tests
+namespace SeleniumTaskTests
 {
     [TestFixture]
     public class MailsTests : CommonConditions
@@ -11,7 +11,7 @@ namespace selenium_task_tests
 
 
         [Test]
-        public void Mail_Is_Ok()
+        public void MailIsDeliverdAndCorrect()
         {
             driver.Navigate().GoToUrl(YandexURL);
             new HomePage().LogIn()?.LogInAs(testUserYandex)?.SendEmail(testMessage);

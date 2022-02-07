@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using NLog;
 using OpenQA.Selenium;
 
-namespace selenium_task_tests
+namespace SeleniumTaskTests
 {
     public class MailsPage : WebPage 
     {
@@ -109,15 +108,6 @@ namespace selenium_task_tests
         {
             return int.Parse(FindElementByXPath(NumberOfUnreadMailsXPath).Text);
         }
-        //public string ReadTheMailAndGetText(int numberOfMail)
-        //{
-        //    var _mails = _driver.FindElements(By.XPath(MailsXPath));
-        //    _mails[numberOfMail - 1].Click();
-        //    _mailTextField = FindElementByXPath(MailsTextXPath);
-        //    string text = _mailTextField.Text;
-        //    _driver.Navigate().Back();
-        //    return text;
-        //}
 
         public string GetMailSenderUsername(int numberOfMail)
         {

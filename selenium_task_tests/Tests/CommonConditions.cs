@@ -3,7 +3,7 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 
-namespace selenium_task_tests
+namespace SeleniumTaskTests
 {
     public class CommonConditions
     {

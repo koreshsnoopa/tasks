@@ -1,20 +1,14 @@
 ﻿using NUnit.Framework;
 
-namespace selenium_task_tests
+namespace SeleniumTaskTests
 {
     [TestFixture]
     public class UserAccessTests : CommonConditions
     {
         User testUserYandex = UserCreator.WithCredentialsFromPropertyYandex();
 
-        //[SetUp]
-        //public void SetUp()
-        //{
-        //    driver = DriverSingleton.GetDriver();
-        //}
-
         [Test]
-        public void Yandex_LogIn_Test_Correct_Password_And_Username()
+        public void YandexLogInTestCorrectPasswordAndUsername()
         {
             driver.Url = YandexURL;
             var mailPageYandex = new HomePage().LogIn()?.LogInAs(testUserYandex);
@@ -22,7 +16,7 @@ namespace selenium_task_tests
         }
 
         [Test]
-        public void Yandex_LogIn_Test_Empty_Username()
+        public void YandexLogInTestEmptyUsername()
         {
             driver.Url = YandexURL;
             var mailPageYandex = new HomePage()
@@ -32,7 +26,7 @@ namespace selenium_task_tests
         }
 
         [Test]
-        public void Yandex_LogIn_Test_Empty_Password()
+        public void YandexLogInTestEmptyPassword()
         {
             driver.Url = YandexURL;
             var mailPageYandex = new HomePage()
@@ -42,7 +36,7 @@ namespace selenium_task_tests
         }
 
         [Test]
-        public void Yandex_LogIn_Test_Correct_Password_And_Incorrect_Username()
+        public void YandexLogInTestCorrectPasswordAndIncorrectUsername()
         {
             driver.Url = YandexURL;
             var mailPageYandex = new HomePage()
@@ -52,7 +46,7 @@ namespace selenium_task_tests
         }
 
         [Test]
-        public void Yandex_LogIn_Test_Incorrect_Password_And_Correct_Username()
+        public void YandexLogInTestIncorrectPasswordAndCorrectUsername()
         {
             driver.Url = YandexURL;
             var mailPageYandex = new HomePage()

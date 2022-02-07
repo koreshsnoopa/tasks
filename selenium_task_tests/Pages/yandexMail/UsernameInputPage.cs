@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using OpenQA.Selenium;
 
-namespace selenium_task_tests
+namespace SeleniumTaskTests
 {
     public class UsernameInputPage : WebPage
     {

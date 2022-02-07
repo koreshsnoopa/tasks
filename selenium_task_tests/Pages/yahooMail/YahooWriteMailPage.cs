@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using OpenQA.Selenium;
 
-namespace selenium_task_tests
+namespace SeleniumTaskTests
 {
     public class YahooWriteMailPage : WebPage
     {

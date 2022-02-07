@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace selenium_task_tests
+namespace SeleniumTaskTests
 {
     [TestFixture]
     public class SettingsTests : CommonConditions
@@ -11,7 +11,7 @@ namespace selenium_task_tests
         User testUserYahoo = UserCreator.WithCredentialsFromPropertyYahoo();
 
         [Test]
-        public void Name_Is_Changed()
+        public void NameIsChanged()
         {
             driver.Url = YahooURL;
             messageWithNewName = MessageCreator.MessageWithNewName(testUserYahoo.Username, testUserYandex.Username);

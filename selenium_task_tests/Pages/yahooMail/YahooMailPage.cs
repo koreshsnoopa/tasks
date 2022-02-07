@@ -1,42 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading;
 using NLog;
 using OpenQA.Selenium;
 
-namespace selenium_task_tests
+namespace SeleniumTaskTests
 {
     public class YahooMailPage : WebPage
     {
         static string NewMailButtonXPath = "//a[@data-test-id='compose-button']";
         static string NumberOfMailsXPath = "//span[contains(@title,'Inbox')]/following-sibling::span/span";
         static string MailsTextXPath = "//div[contains(@class,'msg-body')]/descendant::div[4]";
-        static string MailsXPath = "//span[@role='gridcell'][@title][not(@data-test-id)]";
 
         IWebElement _newMailButton;
         IWebElement _numberOfMails;
         IWebElement _mail;
         IWebElement _mailsText;
-        IWebElement _inboxMail;
 
         Logger logger = LogManager.GetCurrentClassLogger();
-        List<string> names = new List<string>();
-        List<bool> isUnread = new List<bool>();
        
         public YahooMailPage() : base()
         {
             _newMailButton = FindElementByXPath(NewMailButtonXPath);
             _numberOfMails = FindElementByXPath(NumberOfMailsXPath);
-
-            foreach (var i in _driver.FindElements(By.XPath(MailsXPath)))
-            {
-                names.Add(i.GetAttribute("title"));
-            }
-
-            foreach (var i in _driver.FindElements(By.XPath($"//li[count(a[@role])=1]/a")))
-            {
-                isUnread.Add(i.GetAttribute("data-test-read") == "false");
-            }
         }
 
         public void WriteMail(Message message)
@@ -62,14 +46,14 @@ namespace selenium_task_tests
 
         public bool IsMailUnread(int numberOfMail)
         {
-            Thread.Sleep(100);
             return FindElementByXPath($"//li[count(a[@role])=1][{numberOfMail}]/a")
                 .GetAttribute("data-test-read") == "false";
         }
 
         public string GetMailSenderUsername(int numberOfMail)
         {
-            return names[numberOfMail - 1];
+            return FindElementByXPath($"//li[count(a[@role])=1][{numberOfMail}]//div[@data-test-id='senders']/span")
+                .GetAttribute("title");
         }
 
         public Message GetMail(int numberOfMail)

@@ -1,4 +1,4 @@
-﻿namespace selenium_task_tests
+﻿namespace SeleniumTaskTests
 {
     public class MessageCreator
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using NLog;
 
-namespace selenium_task_tests
+namespace SeleniumTaskTests
 {
     public class YahooLogInPages : WebPage
     {

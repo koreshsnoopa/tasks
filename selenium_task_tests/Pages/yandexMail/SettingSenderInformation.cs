@@ -2,7 +2,7 @@
 using NLog;
 using OpenQA.Selenium;
 
-namespace selenium_task_tests
+namespace SeleniumTaskTests
 {
     public class SettingSenderInformation : WebPage
     {
