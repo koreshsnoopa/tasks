@@ -5,11 +5,14 @@ namespace SubsequencesFinderTests
 {
     public class Tests
     {
+        string OneLetter = "a";
+        string NumbersWithLetters = "abcddddda44b45666666a6";
+        string EmptyString = string.Empty;
+
         [Test]
-        public void GetlenghthOfMaxUnequalSubseqTest1()
+        public void GetlenghthOfMaxUnequalSubseqOneLetter()
         {
-            string input = "a";
-            var subsequencesFinder = new SubsequencesFinder(input);
+            var subsequencesFinder = new SubsequencesFinder(OneLetter);
 
             int result = subsequencesFinder.GetlenghthOfMaxUnequalSubseq();
             int expected = 1;
@@ -18,10 +21,9 @@ namespace SubsequencesFinderTests
         }
 
         [Test]
-        public void GetlenghthOfMaxUnequalSubseqTest2()
+        public void GetlenghthOfMaxUnequalSubseqTestNumbersWithLetters()
         {
-            string input = "abcddddda44b45666666a6";
-            var subsequencesFinder = new SubsequencesFinder(input);
+            var subsequencesFinder = new SubsequencesFinder(NumbersWithLetters);
 
             int result = subsequencesFinder.GetlenghthOfMaxUnequalSubseq();
             int expected = 5;
@@ -30,19 +32,16 @@ namespace SubsequencesFinderTests
         }
 
         [Test]
-        public void GetlenghthOfMaxUnequalSubseqTest3()
+        public void GetlenghthOfMaxUnequalSubseqTestEmptyString()
         {
-            string input = string.Empty;
-
             Assert.Throws<System.ArgumentException>(()
-                => new SubsequencesFinder(input).GetlenghthOfMaxUnequalSubseq());
+                => new SubsequencesFinder(EmptyString).GetlenghthOfMaxUnequalSubseq());
         }
 
         [Test]
-        public void GetlenghthOfMaxEqualSubseqLatinLettersTest1()
+        public void GetlenghthOfMaxEqualSubseqLatinLettersNumbersWithLetters()
         {
-            string input = "abcddddda44b45666666a6";
-            var subsequencesFinder = new SubsequencesFinder(input);
+            var subsequencesFinder = new SubsequencesFinder(NumbersWithLetters);
 
             int result = subsequencesFinder.GetlenghthOfMaxEqualSubseqLatinLetters();
             int expected = 5;
@@ -51,10 +50,9 @@ namespace SubsequencesFinderTests
         }
 
         [Test]
-        public void GetlenghthOfMaxEqualSubseqLatinLettersTest2()
+        public void GetlenghthOfMaxEqualSubseqLatinLettersOneLetter()
         {
-            string input = "a";
-            var subsequencesFinder = new SubsequencesFinder(input);
+            var subsequencesFinder = new SubsequencesFinder(OneLetter);
 
             int result = subsequencesFinder.GetlenghthOfMaxEqualSubseqLatinLetters();
             int expected = 0;
@@ -63,19 +61,16 @@ namespace SubsequencesFinderTests
         }
 
         [Test]
-        public void GetlenghthOfMaxEqualSubseqLatinLettersTest3()
+        public void GetlenghthOfMaxEqualSubseqLatinLettersEmptyString()
         {
-            string input = string.Empty;
-
             Assert.Throws<System.ArgumentException>(()
-                => new SubsequencesFinder(input).GetlenghthOfMaxEqualSubseqLatinLetters());
+                => new SubsequencesFinder(EmptyString).GetlenghthOfMaxEqualSubseqLatinLetters());
         }
 
         [Test]
-        public void GetlenghthOfMaxEqualSubseqNembersTest1()
+        public void GetlenghthOfMaxEqualSubseqNembersOneLetter()
         {
-            string input = "a";
-            var subsequencesFinder = new SubsequencesFinder(input);
+            var subsequencesFinder = new SubsequencesFinder(OneLetter);
 
             int result = subsequencesFinder.GetlenghthOfMaxEqualSubseqNembers();
             int expected = 0;
@@ -84,10 +79,9 @@ namespace SubsequencesFinderTests
         }
 
         [Test]
-        public void GetlenghthOfMaxEqualSubseqNembersTest2()
+        public void GetlenghthOfMaxEqualSubseqNembersNumbersWithLetters()
         {
-            string input = "abcddddda44b45666666a6";
-            var subsequencesFinder = new SubsequencesFinder(input);
+            var subsequencesFinder = new SubsequencesFinder(NumbersWithLetters);
 
             int result = subsequencesFinder.GetlenghthOfMaxEqualSubseqNembers();
             int expected = 6;
@@ -96,12 +90,10 @@ namespace SubsequencesFinderTests
         }
 
         [Test]
-        public void GetlenghthOfMaxEqualSubseqNembersTest3()
+        public void GetlenghthOfMaxEqualSubseqNembersEmptyString()
         {
-            string input = string.Empty;
-
             Assert.Throws<System.ArgumentException>(()
-                => new SubsequencesFinder(input).GetlenghthOfMaxEqualSubseqNembers());
+                => new SubsequencesFinder(EmptyString).GetlenghthOfMaxEqualSubseqNembers());
         }
 
     }
