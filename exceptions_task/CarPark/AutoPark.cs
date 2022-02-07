@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace exceptions_task
 {
-    static class ExtensionClass
+    public class AutoPark
     {
-        public static void AddAuto(this List<Transport> transports, Transport transport)
+        private List<Transport> transports = new List<Transport>();
+
+        public AutoPark()
+        {
+        }
+
+        public void AddAuto(Transport transport)
         {
             foreach (var tr in transports)
             {
@@ -17,8 +22,7 @@ namespace exceptions_task
 
             transports.Add(transport);
         }
-
-        public static void UpdateAuto(this List<Transport> transports, int id, Transport newAuto)
+        public void UpdateAuto(int id, Transport newAuto)
         {
             bool isDone = false;
 
@@ -27,7 +31,7 @@ namespace exceptions_task
                 if (transports[i].Id == id)
                 {
                     transports.Remove(transports[i]);
-                    transports.AddAuto(newAuto);
+                    transports.Add(newAuto);
                     isDone = true;
                 }
             }
@@ -38,7 +42,7 @@ namespace exceptions_task
             }
         }
 
-        public static void RemoveAuto(this List<Transport> transports, int id)
+        public void RemoveAuto(int id)
         {
             bool isDone = false;
             for (int i = 0; i < transports.Count; i++)
@@ -53,10 +57,10 @@ namespace exceptions_task
             if (!isDone)
             {
                 throw new RemoveAutoException("There is no auto with such ID to remove!");
-            } 
+            }
         }
 
-        public static List<Transport> GetAutoByParameter(this List<Transport> transports, string parameter, string value)
+        public List<Transport> GetAutoByParameter(string parameter, string value)
         {
             List<Transport> autosWithParamAndVal = new List<Transport>();
             foreach (var tr in transports)
@@ -74,5 +78,11 @@ namespace exceptions_task
 
             return autosWithParamAndVal;
         }
+
+        public List<Transport> GetTransportsList()
+        {
+            return transports;
+        }
+
     }
 }

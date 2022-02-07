@@ -9,8 +9,7 @@ namespace exceptions_task
 
             try
             {
-                List<Transport> autos = new List<Transport>();
-
+                AutoPark autos = new AutoPark();
 
                 Car car1 = new Car("Black", new ElectricEngine("285740927", 270, 1.5), new Chassis(4, "IQPBH83650D185963", 700),
                      new Transmission("Automatic", 2, "Honda"), 1);
@@ -35,7 +34,7 @@ namespace exceptions_task
                 autos.RemoveAuto(4);
 
                 List<Transport> temp = autos.GetAutoByParameter("Color", "Black");
-                Console.WriteLine(temp.Count);
+
             }
             catch (InitializationException ex)
             {
