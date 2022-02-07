@@ -14,7 +14,7 @@ namespace selenium_task_tests
         IWebElement _inputUsername;
         IWebElement _nextButton;
 
-        public YahooInputUsernamePage(IWebDriver driver) : base(driver)
+        public YahooInputUsernamePage() : base()
         {
             _inputUsername = FindElementById(InputUsernameID);
             _nextButton = FindElementById(NextButtonID);
@@ -29,7 +29,7 @@ namespace selenium_task_tests
             _inputUsername.SendKeys(username);
             _nextButton.Click();
 
-            return new YahooInputPasswordPage(_driver);
+            return new YahooInputPasswordPage();
         }
 
     }

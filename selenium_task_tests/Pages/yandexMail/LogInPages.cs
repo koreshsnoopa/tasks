@@ -1,6 +1,5 @@
 ﻿using System;
 using NLog;
-using OpenQA.Selenium;
 
 namespace selenium_task_tests
 {
@@ -11,9 +10,9 @@ namespace selenium_task_tests
         MailsPage mailsPage;
         Logger logger = LogManager.GetCurrentClassLogger();
 
-        public LogInPages(IWebDriver driver) : base(driver)
+        public LogInPages() : base()
         {
-            usernameInpuPage = new UsernameInputPage(_driver);
+            usernameInpuPage = new UsernameInputPage();
         }
 
         public MailsPage LogInAs(User user)

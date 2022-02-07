@@ -7,9 +7,9 @@ namespace selenium_task_tests
     {
         protected IWebDriver _driver;
 
-        protected WebPage(IWebDriver driver)
+        protected WebPage()
         {
-            _driver = driver;
+            _driver = DriverSingleton.GetDriver();
         }
 
         public IWebElement FindElementByXPath(string Xpath)

@@ -11,7 +11,7 @@ namespace selenium_task_tests
         IWebElement _passwordInput;
         IWebElement _nextButton;
 
-        public YahooInputPasswordPage(IWebDriver driver) : base(driver)
+        public YahooInputPasswordPage() : base()
         {
             _passwordInput = FindElementById(PasswordInputID);
             _nextButton = FindElementById(NextButtonID);
@@ -26,7 +26,7 @@ namespace selenium_task_tests
             _passwordInput.SendKeys(password);
             _nextButton.Click();
 
-            return new YahooMainPage(_driver);
+            return new YahooMainPage();
         }
     }
 }

@@ -30,6 +30,7 @@
     <None Remove="NLog.Config" />
     <None Remove="Driver\" />
     <None Remove="Model\" />
+    <None Remove="Tests\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
@@ -37,5 +38,6 @@
     <Folder Include="Pages\yandexMail\" />
     <Folder Include="Driver\" />
     <Folder Include="Model\" />
+    <Folder Include="Tests\" />
   </ItemGroup>
 </Project>

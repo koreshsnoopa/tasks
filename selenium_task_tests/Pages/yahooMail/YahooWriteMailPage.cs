@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Threading;
-using NLog;
 using OpenQA.Selenium;
 
 namespace selenium_task_tests
@@ -20,7 +19,7 @@ namespace selenium_task_tests
         IWebElement _messageInput;
         IWebElement _sendButton;
 
-        public YahooWriteMailPage(IWebDriver driver) : base(driver)
+        public YahooWriteMailPage() : base()
         {
             _reciversUsernameInput = FindElementById(ReiversUsernameInputID);
             _themeInput = FindElementByXPath(ThemeInputXPath);
@@ -28,40 +27,26 @@ namespace selenium_task_tests
             _sendButton = FindElementByXPath(SendButtonXPath);
         }
 
-        public YahooMailPage SendEmail(string username, string theme, string message)
+        public YahooMailPage SendEmail(Message message)
         {
-            if (string.IsNullOrEmpty(username) || !Regex.IsMatch(username, pattern, RegexOptions.IgnoreCase))
+            if (string.IsNullOrEmpty(message.ReciversName) || !Regex.IsMatch(message.ReciversName, pattern, RegexOptions.IgnoreCase))
             {
                 throw new ArgumentException("Reciver's username is not valid!");
             }
-            if (string.IsNullOrEmpty(message))
+            if (string.IsNullOrEmpty(message.Text))
             {
                 throw new ArgumentException("Message can't be empty!");
             }
-            _reciversUsernameInput.SendKeys(username);
-            _themeInput.SendKeys(theme);
-            _messageInput.SendKeys(message);
+            _reciversUsernameInput.SendKeys(message.ReciversName);
+
+            if (!string.IsNullOrEmpty(message.Theme))
+            {
+                _themeInput.SendKeys(message.Theme);
+            }
+            _messageInput.SendKeys(message.Text);
             _sendButton.Click();
             Thread.Sleep(10);
-            return new YahooMailPage(_driver);
-        }
-
-        public YahooMailPage SendEmail(string username, string message)
-        {
-            if (string.IsNullOrEmpty(username) || !Regex.IsMatch(username, pattern, RegexOptions.IgnoreCase))
-            {
-                throw new ArgumentException("Reciver's username is not valid!");
-            }
-            if (string.IsNullOrEmpty(message))
-            {
-                throw new ArgumentException("Message can't be empty!");
-            }
-            _reciversUsernameInput.SendKeys(username);
-            _messageInput.SendKeys(message);
-            _sendButton.Click();
-            Thread.Sleep(10);
-
-            return new YahooMailPage(_driver);
+            return new YahooMailPage();
         }
     }
 }

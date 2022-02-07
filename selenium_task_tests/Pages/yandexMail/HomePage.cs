@@ -8,7 +8,7 @@ namespace selenium_task_tests
 
         private IWebElement _logInButton;
 
-        public HomePage(IWebDriver driver) : base(driver)
+        public HomePage() : base()
         {
             _logInButton = FindElementByXPath(LogInButtonXPath);
         }
@@ -16,7 +16,7 @@ namespace selenium_task_tests
         public LogInPages LogIn()
         {
             _logInButton.Click();
-            return new LogInPages(_driver);
+            return new LogInPages();
         }
 
 

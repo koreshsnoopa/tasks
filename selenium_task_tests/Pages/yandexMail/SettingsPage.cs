@@ -8,7 +8,7 @@ namespace selenium_task_tests
 
         IWebElement _informationAboutSender;
 
-        public SettingsPage(IWebDriver driver) : base(driver)
+        public SettingsPage() : base()
         {
             _informationAboutSender = FindElementByXPath(InformationAboutSenderXPath);
         }
@@ -16,7 +16,7 @@ namespace selenium_task_tests
         public SettingSenderInformation ChangeInformationAboutSender()
         {
             _informationAboutSender.Click();
-            return new SettingSenderInformation(_driver);
+            return new SettingSenderInformation();
         }
     }
 }

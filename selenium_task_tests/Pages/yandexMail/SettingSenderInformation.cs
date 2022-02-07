@@ -13,7 +13,7 @@ namespace selenium_task_tests
         IWebElement _saveChagesButton;
         Logger logger = LogManager.GetCurrentClassLogger();
 
-        public SettingSenderInformation(IWebDriver driver) : base(driver)
+        public SettingSenderInformation() : base()
         {
             _nameInput = FindElementByXPath(NameInputXPath);
         }
@@ -24,7 +24,7 @@ namespace selenium_task_tests
             return name;
         }
 
-        public void ChangeName(string newName, User user)
+        public void ChangeName(string newName)
         {
             if (string.IsNullOrEmpty(newName))
             {
@@ -34,9 +34,8 @@ namespace selenium_task_tests
             _nameInput.Clear();
             _nameInput.SendKeys(newName);
             _saveChagesButton = FindElementByXPath(SaveChangesButtonXPath);
-            user.ChangeName(newName);
             _saveChagesButton.Click();
-            logger.Info($"Name is changed: New name {user.Name}");
+            logger.Info($"Name is changed: New name {newName}");
         }
     }
 }

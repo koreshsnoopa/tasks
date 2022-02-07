@@ -11,7 +11,7 @@ namespace selenium_task_tests
         IWebElement _nextButton;
         IWebElement _inputPasswordField;
 
-        public PasswordInputPage(IWebDriver driver) : base(driver)
+        public PasswordInputPage() : base()
         {
             _inputPasswordField = FindElementById(InputPasswordFieldID);
             _nextButton = FindElementById(NextButtonID);
@@ -25,7 +25,7 @@ namespace selenium_task_tests
             }
             _inputPasswordField.SendKeys(password);
             _nextButton.Click();
-            return new MailsPage(_driver);
+            return new MailsPage();
         }
     }
 }

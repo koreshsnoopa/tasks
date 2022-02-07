@@ -1,6 +1,5 @@
 ﻿using System;
 using NLog;
-using OpenQA.Selenium;
 
 namespace selenium_task_tests
 {
@@ -11,9 +10,9 @@ namespace selenium_task_tests
         YahooMainPage mainPage;
         Logger logger = LogManager.GetCurrentClassLogger();
 
-        public YahooLogInPages(IWebDriver driver) : base(driver)
+        public YahooLogInPages() : base()
         {
-            usernamePage = new YahooInputUsernamePage(_driver);
+            usernamePage = new YahooInputUsernamePage();
         }
 
         public YahooMainPage LogInAs(User user)

@@ -1,5 +1,4 @@
-﻿using System;
-namespace selenium_task_tests
+﻿namespace selenium_task_tests
 {
     public class UserCreator
     {

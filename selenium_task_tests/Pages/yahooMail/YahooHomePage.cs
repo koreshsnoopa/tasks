@@ -8,7 +8,7 @@ namespace selenium_task_tests
 
         IWebElement _goToLoginPages;
 
-        public YahooHomePage(IWebDriver driver) : base(driver)
+        public YahooHomePage() : base()
         {
             _goToLoginPages = FindElementByXPath(GoToLogInPageXPath);
         }
@@ -16,7 +16,7 @@ namespace selenium_task_tests
         public YahooLogInPages GoToLogIn()
         {
             _goToLoginPages.Click();
-            return new YahooLogInPages(_driver);
+            return new YahooLogInPages();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Threading;
 using NLog;
 using OpenQA.Selenium;
 
@@ -14,11 +14,13 @@ namespace selenium_task_tests
         static string ReciverUsernameXPath = "//span[text()='Кому']/following::div[1]/child::div/child::div";
         static string ThemeInputXPath = "//input[@name='subject']";
         static string MessageInputXPath = "//div[@role='textbox']";
-        static string SendButtonXPath = "//div[@class='composeReact__footer']/descendant::button";
+        static string SendButtonXPath = "//div[@class='composeReact__footer']//button";
         static string MailsXPath = "//a[contains(@href,'#message')]";
         static string MailsTextXPath = "//div[@dir]";
         static string SettingsButtonXPath = "//button[contains(@class,'Settings')]";
         static string AllSettingsButtonXPath = "//a[@href='#setup']";
+        static string BackToMailsXPath = "//a[contains(text(), 'Вернуться во')]";
+        static string NumberOfUnreadMailsXPath = "//a[contains(@class,'Counters')]";
 
         IWebElement _newMailButton;
         IWebElement _sendButton;
@@ -28,9 +30,11 @@ namespace selenium_task_tests
         IWebElement _mailTextField;
         IWebElement _settingsButton;
         IWebElement _allSettings;
+        IWebElement backToMailButton;
+
         Logger logger = LogManager.GetCurrentClassLogger();
 
-        public MailsPage(IWebDriver driver) : base(driver)
+        public MailsPage() : base()
         {
             _newMailButton = FindElementByXPath(NewMailButtonXPath);
             _sendButton = FindElementByXPath(SettingsButtonXPath);
@@ -64,11 +68,11 @@ namespace selenium_task_tests
             _messageInputField.SendKeys(message);
         }
 
-        public void SendEmail(string username, string theme, string message)
+        public void SendEmail(Message message)
         {
             try
             {
-                InputReciverUsername(username);
+                InputReciverUsername(message.ReciversName);
             }
             catch (ArgumentException ex)
             {
@@ -76,51 +80,69 @@ namespace selenium_task_tests
             }
             try
             {
-                InputMailsMessage(message);
+                InputMailsMessage(message.Text);
             }
             catch (ArgumentException ex)
             {
                 logger.Error($"Message is not sended: {ex.Message}");
             }
 
-            InputMailsTheme(theme);
+            if (!string.IsNullOrEmpty(message.Theme))
+            {
+                InputMailsTheme(message.Theme);
+            }
             _sendButton = FindElementByXPath(SendButtonXPath);
             _sendButton.Click();
-            logger.Info($"Message to: {username} is sended seccessfylly");
+            backToMailButton = FindElementByXPath(BackToMailsXPath);
+            backToMailButton.Click();
+            logger.Info($"Message to: {message.ReciversName} is sended seccessfylly");
         }
 
-        public void SendEmail(string username, string message)
+        public bool IsUnread(int numberOfMail)
         {
-            try
-            {
-                InputReciverUsername(username);
-            }
-            catch (ArgumentException ex)
-            {
-                logger.Error($"Message is not sended: {ex.Message}");
-            }
-            try
-            {
-                InputMailsMessage(message);
-            }
-            catch (ArgumentException ex)
-            {
-                logger.Error($"Message is not sended: {ex.Message}");
-            }
-
-            _sendButton = FindElementByXPath(SendButtonXPath);
-            _sendButton.Click();
-            logger.Info($"Message to: {username} is sended seccessfylly");
+            return
+                FindElementByXPath($"//div[contains(@class,'List')]/div[{numberOfMail}]//*[contains(@class,'toggleable')]")
+                .GetAttribute("title") == "Отметить как прочитанное";
         }
 
-        public string ReadTheMailAndGetText(int numberOfMail)
+        public int GetNumberOfUnredMails()
         {
+            return int.Parse(FindElementByXPath(NumberOfUnreadMailsXPath).Text);
+        }
+        //public string ReadTheMailAndGetText(int numberOfMail)
+        //{
+        //    var _mails = _driver.FindElements(By.XPath(MailsXPath));
+        //    _mails[numberOfMail - 1].Click();
+        //    _mailTextField = FindElementByXPath(MailsTextXPath);
+        //    string text = _mailTextField.Text;
+        //    _driver.Navigate().Back();
+        //    return text;
+        //}
+
+        public string GetMailSenderUsername(int numberOfMail)
+        {
+            return FindElementByXPath($"//div[contains(@class,'List')]/div[{numberOfMail}]//*[contains(@class,'FromText')]")
+                .GetAttribute("title");
+        }
+
+        public Message GetMail(int numberOfMail)
+        {
+            string sendersName = GetMailSenderUsername(numberOfMail);
+            string reciversName;
+            string text;
+            string theme;
+
             var _mails = _driver.FindElements(By.XPath(MailsXPath));
             _mails[numberOfMail - 1].Click();
+
             _mailTextField = FindElementByXPath(MailsTextXPath);
-            string text = _mailTextField.Text;
+            text = _mailTextField.Text;
+
+            reciversName = FindElementByXPath("//span[contains(@class,'ContactBadge')]").GetAttribute("title");
+            theme = FindElementByXPath("//span[contains(@class,'subject')]").Text;
             _driver.Navigate().Back();
-            return text;
+
+            return new Message(sendersName, reciversName, theme, text);
         }
 
         public SettingsPage GoToSettings()
@@ -128,7 +150,7 @@ namespace selenium_task_tests
             _settingsButton.Click();
             _allSettings = FindElementByXPath(AllSettingsButtonXPath);
             _allSettings.Click();
-            return new SettingsPage(_driver);
+            return new SettingsPage();
         }
     }
 }

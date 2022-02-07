@@ -8,7 +8,7 @@ namespace selenium_task_tests
 
         IWebElement _mailButton;
 
-        public YahooMainPage(IWebDriver driver) : base(driver)
+        public YahooMainPage() : base()
         {
             _mailButton = FindElementById(MailButtonID);
         }
@@ -16,7 +16,7 @@ namespace selenium_task_tests
         public YahooMailPage GoToMails()
         {
             _mailButton.Click();
-            return new YahooMailPage(_driver);
+            return new YahooMailPage();
         }
 
     }
