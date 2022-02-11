@@ -9,7 +9,6 @@ namespace SeleniumTaskTests
         User testUserYahoo = UserCreator.WithCredentialsFromProperty("yahoo");
         Message testMessage;
 
-
         [Test]
         public void MailIsDeliverdAndCorrect()
         {

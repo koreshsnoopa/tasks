@@ -9,6 +9,8 @@ namespace SeleniumTaskTests
         By NewMailButtonXPath = By.XPath("//a[@data-test-id='compose-button']");
         By NumberOfMailsXPath = By.XPath("//span[contains(@title,'Inbox')]/following-sibling::span/span");
         By MailsTextXPath = By.XPath("//div[contains(@class,'msg-body')]/descendant::div[4]");
+        By ReciversNameXPath = By.XPath("//span[@data-test-id='message-to']");
+        By MailsThemeXpath = By.XPath("//span[@data-test-id='message-group-subject-text']");
 
         IWebElement _newMailButton;
         IWebElement _numberOfMails;
@@ -67,8 +69,8 @@ namespace SeleniumTaskTests
             _mail.Click();
             _mailsText = _driver.FindElement(MailsTextXPath);
             text = _mailsText.Text;
-            reciversName = _driver.FindElement(By.XPath("//span[@data-test-id='message-to']")).GetAttribute("title");
-            theme = _driver.FindElement(By.XPath("//span[@data-test-id='message-group-subject-text']")).Text;
+            reciversName = _driver.FindElement(ReciversNameXPath).GetAttribute("title");
+            theme = _driver.FindElement(MailsThemeXpath).Text;
             _driver.Navigate().Back();
                   
             return new Message(sendersName, reciversName, theme, text);

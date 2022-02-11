@@ -124,10 +124,8 @@ namespace SeleniumTaskTests
 
             var _mails = _driver.FindElements(MailsXPath);
             _mails[numberOfMail - 1].Click();
-
             _mailTextField = _driver.FindElement(MailsTextXPath);
             text = _mailTextField.Text;
-
             reciversName = _driver.FindElement(By.XPath("//span[contains(@class,'ContactBadge')]")).GetAttribute("title");
             theme = _driver.FindElement(By.XPath("//span[contains(@class,'subject')]")).Text;
             _driver.Navigate().Back();
