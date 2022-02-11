@@ -5,12 +5,12 @@ namespace SeleniumTaskTests
     [TestFixture]
     public class UserAccessTests : CommonConditions
     {
-        User testUserYandex = UserCreator.WithCredentialsFromPropertyYandex();
+        User testUserYandex = UserCreator.WithCredentialsFromProperty("yandex");
 
         [Test]
         public void YandexLogInTestCorrectPasswordAndUsername()
         {
-            driver.Url = YandexURL;
+            driver.Url = YANDEX_URL;
             var mailPageYandex = new HomePage().LogIn()?.LogInAs(testUserYandex);
             Assert.NotNull(mailPageYandex);
         }
@@ -18,7 +18,7 @@ namespace SeleniumTaskTests
         [Test]
         public void YandexLogInTestEmptyUsername()
         {
-            driver.Url = YandexURL;
+            driver.Url = YANDEX_URL;
             var mailPageYandex = new HomePage()
                 .LogIn()?.LogInAs(UserCreator.WithEmptyUsernameYandex());
 
@@ -28,7 +28,7 @@ namespace SeleniumTaskTests
         [Test]
         public void YandexLogInTestEmptyPassword()
         {
-            driver.Url = YandexURL;
+            driver.Url = YANDEX_URL;
             var mailPageYandex = new HomePage()
                 .LogIn()?.LogInAs(UserCreator.WithEmptyPasswordYandex());
 
@@ -38,7 +38,7 @@ namespace SeleniumTaskTests
         [Test]
         public void YandexLogInTestCorrectPasswordAndIncorrectUsername()
         {
-            driver.Url = YandexURL;
+            driver.Url = YANDEX_URL;
             var mailPageYandex = new HomePage()
                 .LogIn()?.LogInAs(UserCreator.WithIncorrectUsernameYandex());
 
@@ -48,7 +48,7 @@ namespace SeleniumTaskTests
         [Test]
         public void YandexLogInTestIncorrectPasswordAndCorrectUsername()
         {
-            driver.Url = YandexURL;
+            driver.Url = YANDEX_URL;
             var mailPageYandex = new HomePage()
                 .LogIn()?.LogInAs(UserCreator.WithIncorrectPasswordYandex());
 

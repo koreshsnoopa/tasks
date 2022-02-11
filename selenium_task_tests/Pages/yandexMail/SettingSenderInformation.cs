@@ -6,8 +6,8 @@ namespace SeleniumTaskTests
 {
     public class SettingSenderInformation : WebPage
     {
-        static string NameInputXPath = "//input[@name='from_name']";
-        static string SaveChangesButtonXPath = "//button[@type='submit']";
+        By NameInputXPath = By.XPath("//input[@name='from_name']");
+        By SaveChangesButtonXPath = By.XPath("//button[@type='submit']");
 
         IWebElement _nameInput;
         IWebElement _saveChagesButton;
@@ -15,7 +15,7 @@ namespace SeleniumTaskTests
 
         public SettingSenderInformation() : base()
         {
-            _nameInput = FindElementByXPath(NameInputXPath);
+            _nameInput = _driver.FindElement(NameInputXPath);
         }
 
         public string GetName()
@@ -33,7 +33,7 @@ namespace SeleniumTaskTests
             }
             _nameInput.Clear();
             _nameInput.SendKeys(newName);
-            _saveChagesButton = FindElementByXPath(SaveChangesButtonXPath);
+            _saveChagesButton = _driver.FindElement(SaveChangesButtonXPath);
             _saveChagesButton.Click();
             logger.Info($"Name is changed: New name {newName}");
         }

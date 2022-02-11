@@ -4,13 +4,13 @@ namespace SeleniumTaskTests
 {
     public class SettingsPage : WebPage
     {
-        static string InformationAboutSenderXPath = "//span[contains(text(),'Информация')]";
+        By InformationAboutSenderXPath = By.XPath("//span[contains(text(),'Информация')]");
 
         IWebElement _informationAboutSender;
 
         public SettingsPage() : base()
         {
-            _informationAboutSender = FindElementByXPath(InformationAboutSenderXPath);
+            _informationAboutSender = _driver.FindElement(InformationAboutSenderXPath);
         }
 
         public SettingSenderInformation ChangeInformationAboutSender()

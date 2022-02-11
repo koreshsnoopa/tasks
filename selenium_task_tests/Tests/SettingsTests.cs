@@ -7,17 +7,17 @@ namespace SeleniumTaskTests
     public class SettingsTests : CommonConditions
     {
         Message messageWithNewName;
-        User testUserYandex = UserCreator.WithCredentialsFromPropertyYandex();
-        User testUserYahoo = UserCreator.WithCredentialsFromPropertyYahoo();
+        User testUserYandex = UserCreator.WithCredentialsFromProperty("yandex");
+        User testUserYahoo = UserCreator.WithCredentialsFromProperty("yahoo");
 
         [Test]
         public void NameIsChanged()
         {
-            driver.Url = YahooURL;
-            messageWithNewName = MessageCreator.MessageWithNewName(testUserYahoo.Username, testUserYandex.Username);
+            driver.Url = YAHOO_URL;
+            messageWithNewName = MessageCreator.WithCredentialsFromProperty(testUserYahoo.Username, testUserYandex.Username, MessageCreator.THEME_FOR_NAME);
             new YahooHomePage().GoToLogIn()?.LogInAs(testUserYahoo)
                 ?.GoToMails()?.WriteMail(messageWithNewName);
-            driver.Url = YandexURL;
+            driver.Url = YANDEX_URL;
             MailsPage mailsPage = new HomePage().LogIn()?.LogInAs(testUserYandex);
             Message mailWithNewNameFromMail;
             string newName = string.Empty;

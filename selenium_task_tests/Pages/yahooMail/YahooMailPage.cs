@@ -6,9 +6,9 @@ namespace SeleniumTaskTests
 {
     public class YahooMailPage : WebPage
     {
-        static string NewMailButtonXPath = "//a[@data-test-id='compose-button']";
-        static string NumberOfMailsXPath = "//span[contains(@title,'Inbox')]/following-sibling::span/span";
-        static string MailsTextXPath = "//div[contains(@class,'msg-body')]/descendant::div[4]";
+        By NewMailButtonXPath = By.XPath("//a[@data-test-id='compose-button']");
+        By NumberOfMailsXPath = By.XPath("//span[contains(@title,'Inbox')]/following-sibling::span/span");
+        By MailsTextXPath = By.XPath("//div[contains(@class,'msg-body')]/descendant::div[4]");
 
         IWebElement _newMailButton;
         IWebElement _numberOfMails;
@@ -19,8 +19,8 @@ namespace SeleniumTaskTests
        
         public YahooMailPage() : base()
         {
-            _newMailButton = FindElementByXPath(NewMailButtonXPath);
-            _numberOfMails = FindElementByXPath(NumberOfMailsXPath);
+            _newMailButton = _driver.FindElement(NewMailButtonXPath);
+            _numberOfMails = _driver.FindElement(NumberOfMailsXPath);
         }
 
         public void WriteMail(Message message)
@@ -46,13 +46,13 @@ namespace SeleniumTaskTests
 
         public bool IsMailUnread(int numberOfMail)
         {
-            return FindElementByXPath($"//li[count(a[@role])=1][{numberOfMail}]/a")
+            return _driver.FindElement(By.XPath($"//li[count(a[@role])=1][{numberOfMail}]/a"))
                 .GetAttribute("data-test-read") == "false";
         }
 
         public string GetMailSenderUsername(int numberOfMail)
         {
-            return FindElementByXPath($"//li[count(a[@role])=1][{numberOfMail}]//div[@data-test-id='senders']/span")
+            return _driver.FindElement(By.XPath($"//li[count(a[@role])=1][{numberOfMail}]//div[@data-test-id='senders']/span"))
                 .GetAttribute("title");
         }
 
@@ -63,12 +63,12 @@ namespace SeleniumTaskTests
             string text;
             string theme;
 
-            _mail = FindElementByXPath($"//li[count(a[@role])=1][{numberOfMail}]");
+            _mail = _driver.FindElement(By.XPath($"//li[count(a[@role])=1][{numberOfMail}]"));
             _mail.Click();
-            _mailsText = FindElementByXPath(MailsTextXPath);
+            _mailsText = _driver.FindElement(MailsTextXPath);
             text = _mailsText.Text;
-            reciversName = FindElementByXPath("//span[@data-test-id='message-to']").GetAttribute("title");
-            theme = FindElementByXPath("//span[@data-test-id='message-group-subject-text']").Text;
+            reciversName = _driver.FindElement(By.XPath("//span[@data-test-id='message-to']")).GetAttribute("title");
+            theme = _driver.FindElement(By.XPath("//span[@data-test-id='message-group-subject-text']")).Text;
             _driver.Navigate().Back();
                   
             return new Message(sendersName, reciversName, theme, text);

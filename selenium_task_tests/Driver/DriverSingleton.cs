@@ -19,7 +19,7 @@ namespace SeleniumTaskTests
             {
                 //_driver = new FirefoxDriver();
                 _driver = new ChromeDriver();
-
+                _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
                 _driver.Manage().Window.Maximize();
             }
 

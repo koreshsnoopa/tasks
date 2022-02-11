@@ -5,16 +5,17 @@ namespace SeleniumTaskTests
 {
     public class PasswordInputPage : WebPage
     {
-        static string NextButtonID = "passp:sign-in";
-        static string InputPasswordFieldID = "passp-field-passwd";
+        By NextButtonID = By.Id("passp:sign-in");
+        By InputPasswordFieldID = By.Id("passp-field-passwd");
+        By IncorrectPasswordXPath = By.XPath("//div[text()='Неверный пароль']");
 
         IWebElement _nextButton;
         IWebElement _inputPasswordField;
 
         public PasswordInputPage() : base()
         {
-            _inputPasswordField = FindElementById(InputPasswordFieldID);
-            _nextButton = FindElementById(NextButtonID);
+            _inputPasswordField = _driver.FindElement(InputPasswordFieldID);
+            _nextButton = _driver.FindElement(NextButtonID);
         }
 
         public MailsPage InputPassword(string password)
@@ -25,7 +26,15 @@ namespace SeleniumTaskTests
             }
             _inputPasswordField.SendKeys(password);
             _nextButton.Click();
-            return new MailsPage();
+            try
+            {
+                _driver.FindElement(IncorrectPasswordXPath);
+            }
+            catch
+            {
+                return new MailsPage();
+            }
+            return null;
         }
     }
 }

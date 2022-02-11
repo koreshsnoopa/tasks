@@ -7,19 +7,19 @@ namespace SeleniumTaskTests
 {
     public class MailsPage : WebPage 
     {
-        static string pattern = @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+        const string PATTERN = @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$";
-        static string NewMailButtonXPath = "//a[@href='#compose']";
-        static string ReciverUsernameXPath = "//span[text()='Кому']/following::div[1]/child::div/child::div";
-        static string ThemeInputXPath = "//input[@name='subject']";
-        static string MessageInputXPath = "//div[@role='textbox']";
-        static string SendButtonXPath = "//div[@class='composeReact__footer']//button";
-        static string MailsXPath = "//a[contains(@href,'#message')]";
-        static string MailsTextXPath = "//div[@dir]";
-        static string SettingsButtonXPath = "//button[contains(@class,'Settings')]";
-        static string AllSettingsButtonXPath = "//a[@href='#setup']";
-        static string BackToMailsXPath = "//a[contains(text(), 'Вернуться во')]";
-        static string NumberOfUnreadMailsXPath = "//a[contains(@class,'Counters')]";
+        By NewMailButtonXPath = By.XPath("//a[@href='#compose']");
+        By ReciverUsernameXPath = By.XPath("//span[text()='Кому']/following::div[1]/child::div/child::div");
+        By ThemeInputXPath = By.XPath("//input[@name='subject']");
+        By MessageInputXPath = By.XPath("//div[@role='textbox']");
+        By SendButtonXPath = By.XPath("//div[@class='composeReact__footer']//button");
+        By MailsXPath = By.XPath("//a[contains(@href,'#message')]");
+        By MailsTextXPath = By.XPath("//div[@dir]");
+        By SettingsButtonXPath = By.XPath("//button[contains(@class,'Settings')]");
+        By AllSettingsButtonXPath = By.XPath("//a[@href='#setup']");
+        By BackToMailsXPath = By.XPath("//a[contains(text(), 'Вернуться во')]");
+        By NumberOfUnreadMailsXPath = By.XPath("//a[contains(@class,'Counters')]");
 
         IWebElement _newMailButton;
         IWebElement _sendButton;
@@ -35,25 +35,25 @@ namespace SeleniumTaskTests
 
         public MailsPage() : base()
         {
-            _newMailButton = FindElementByXPath(NewMailButtonXPath);
-            _sendButton = FindElementByXPath(SettingsButtonXPath);
-            _settingsButton = FindElementByXPath(SettingsButtonXPath);
+            _newMailButton = _driver.FindElement(NewMailButtonXPath);
+            _sendButton = _driver.FindElement(SettingsButtonXPath);
+            _settingsButton = _driver.FindElement(SettingsButtonXPath);
         }
 
         public void InputReciverUsername(string username)
         {
-            if (string.IsNullOrEmpty(username) || !Regex.IsMatch(username, pattern, RegexOptions.IgnoreCase))
+            if (string.IsNullOrEmpty(username) || !Regex.IsMatch(username, PATTERN, RegexOptions.IgnoreCase))
             {
                 throw new ArgumentException("Reciver's username is not valid!");
             }
             _newMailButton.Click();
-            _reciverUsernameInput = FindElementByXPath(ReciverUsernameXPath);
+            _reciverUsernameInput = _driver.FindElement(ReciverUsernameXPath);
             _reciverUsernameInput.SendKeys(username);
         }
 
         public void InputMailsTheme(string theme)
         {
-            _themeInputField = FindElementByXPath(ThemeInputXPath);
+            _themeInputField = _driver.FindElement(ThemeInputXPath);
             _themeInputField.SendKeys(theme);
         }
 
@@ -63,7 +63,7 @@ namespace SeleniumTaskTests
             {
                 throw new ArgumentException("Message can't be empty!");
             }
-            _messageInputField = FindElementByXPath(MessageInputXPath);
+            _messageInputField = _driver.FindElement(MessageInputXPath);
             _messageInputField.SendKeys(message);
         }
 
@@ -90,9 +90,9 @@ namespace SeleniumTaskTests
             {
                 InputMailsTheme(message.Theme);
             }
-            _sendButton = FindElementByXPath(SendButtonXPath);
+            _sendButton = _driver.FindElement(SendButtonXPath);
             _sendButton.Click();
-            backToMailButton = FindElementByXPath(BackToMailsXPath);
+            backToMailButton = _driver.FindElement(BackToMailsXPath);
             backToMailButton.Click();
             logger.Info($"Message to: {message.ReciversName} is sended seccessfylly");
         }
@@ -100,18 +100,18 @@ namespace SeleniumTaskTests
         public bool IsUnread(int numberOfMail)
         {
             return
-                FindElementByXPath($"//div[contains(@class,'List')]/div[{numberOfMail}]//*[contains(@class,'toggleable')]")
+                _driver.FindElement(By.XPath($"//div[contains(@class,'List')]/div[{numberOfMail}]//*[contains(@class,'toggleable')]"))
                 .GetAttribute("title") == "Отметить как прочитанное";
         }
 
         public int GetNumberOfUnredMails()
         {
-            return int.Parse(FindElementByXPath(NumberOfUnreadMailsXPath).Text);
+            return int.Parse(_driver.FindElement(NumberOfUnreadMailsXPath).Text);
         }
 
         public string GetMailSenderUsername(int numberOfMail)
         {
-            return FindElementByXPath($"//div[contains(@class,'List')]/div[{numberOfMail}]//*[contains(@class,'FromText')]")
+            return _driver.FindElement(By.XPath($"//div[contains(@class,'List')]/div[{numberOfMail}]//*[contains(@class,'FromText')]"))
                 .GetAttribute("title");
         }
 
@@ -122,14 +122,14 @@ namespace SeleniumTaskTests
             string text;
             string theme;
 
-            var _mails = _driver.FindElements(By.XPath(MailsXPath));
+            var _mails = _driver.FindElements(MailsXPath);
             _mails[numberOfMail - 1].Click();
 
-            _mailTextField = FindElementByXPath(MailsTextXPath);
+            _mailTextField = _driver.FindElement(MailsTextXPath);
             text = _mailTextField.Text;
 
-            reciversName = FindElementByXPath("//span[contains(@class,'ContactBadge')]").GetAttribute("title");
-            theme = FindElementByXPath("//span[contains(@class,'subject')]").Text;
+            reciversName = _driver.FindElement(By.XPath("//span[contains(@class,'ContactBadge')]")).GetAttribute("title");
+            theme = _driver.FindElement(By.XPath("//span[contains(@class,'subject')]")).Text;
             _driver.Navigate().Back();
 
             return new Message(sendersName, reciversName, theme, text);
@@ -138,7 +138,7 @@ namespace SeleniumTaskTests
         public SettingsPage GoToSettings()
         {
             _settingsButton.Click();
-            _allSettings = FindElementByXPath(AllSettingsButtonXPath);
+            _allSettings = _driver.FindElement(AllSettingsButtonXPath);
             _allSettings.Click();
             return new SettingsPage();
         }

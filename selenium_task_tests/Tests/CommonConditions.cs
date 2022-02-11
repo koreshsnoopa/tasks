@@ -8,8 +8,8 @@ namespace SeleniumTaskTests
     public class CommonConditions
     {
         protected IWebDriver driver;
-        public static string YahooURL = "https://www.yahoo.com/";
-        public static string YandexURL = "https://mail.yandex.by/";
+        public const string YAHOO_URL = "https://www.yahoo.com/";
+        public const string YANDEX_URL = "https://mail.yandex.by/";
 
         [SetUp]
         public void SetUp()

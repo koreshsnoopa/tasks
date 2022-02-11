@@ -4,13 +4,13 @@ namespace SeleniumTaskTests
 {
     public class YahooMainPage : WebPage
     {
-        static string MailButtonID = "ybarMailLink";
+        By MailButtonID = By.Id("ybarMailLink");
 
         IWebElement _mailButton;
 
         public YahooMainPage() : base()
         {
-            _mailButton = FindElementById(MailButtonID);
+            _mailButton = _driver.FindElement(MailButtonID);
         }
 
         public YahooMailPage GoToMails()

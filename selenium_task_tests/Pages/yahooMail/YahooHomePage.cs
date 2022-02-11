@@ -4,13 +4,13 @@ namespace SeleniumTaskTests
 {
     public class YahooHomePage : WebPage
     {
-        static string GoToLogInPageXPath = "//input[@name='crumb']/following-sibling::a[text()='Sign in']";
+        By GoToLogInPageXPath = By.XPath("//input[@name='crumb']/following-sibling::a[text()='Sign in']");
 
         IWebElement _goToLoginPages;
 
         public YahooHomePage() : base()
         {
-            _goToLoginPages = FindElementByXPath(GoToLogInPageXPath);
+            _goToLoginPages = _driver.FindElement(GoToLogInPageXPath);
         }
 
         public YahooLogInPages GoToLogIn()

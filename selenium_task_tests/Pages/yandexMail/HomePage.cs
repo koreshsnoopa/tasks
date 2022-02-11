@@ -4,13 +4,13 @@ namespace SeleniumTaskTests
 {
     public class HomePage : WebPage
     {
-        static string LogInButtonXPath = "//span[text()='Войти']/parent::a";
+        By LogInButtonXPath = By.XPath("//span[text()='Войти']/parent::a");
 
         private IWebElement _logInButton;
 
         public HomePage() : base()
         {
-            _logInButton = FindElementByXPath(LogInButtonXPath);
+            _logInButton = _driver.FindElement(LogInButtonXPath);
         }
 
         public LogInPages LogIn()
@@ -18,7 +18,5 @@ namespace SeleniumTaskTests
             _logInButton.Click();
             return new LogInPages();
         }
-
-
     }
 }

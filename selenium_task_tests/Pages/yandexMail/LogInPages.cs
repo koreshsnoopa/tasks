@@ -17,7 +17,6 @@ namespace SeleniumTaskTests
 
         public MailsPage LogInAs(User user)
         {
-            string url1 = _driver.Url;
             try
             {
                 passwordInputPage = usernameInpuPage.InputUsermame(user.Username);
@@ -27,11 +26,10 @@ namespace SeleniumTaskTests
                 logger.Error($"User with username: {user.Username} and password: {user.Password} is not logged in:{ex.Message}");
                 return null;
             }
-            string url2 = _driver.Url;
-            if (url1.Equals(url2))
+            if(passwordInputPage == null)
             {
-                logger.Error($"User with username: {user.Username} and password: {user.Password} is not logged in");
                 return null;
+                logger.Error($"User with username: {user.Username} and password: {user.Password} is not logged in");
             }
             try
             {
@@ -42,12 +40,10 @@ namespace SeleniumTaskTests
                 logger.Error($"User with username: {user.Username} and password: {user.Password} is not logged in:\n{ex.Message}");
                 return null;
             }
-            string url3 = _driver.Url;
-
-            if (url3.Equals(url2))
+            if (mailsPage == null)
             {
                 logger.Error($"User with username: {user.Username} and password: {user.Password} is not logged in");
-                return null;
+                return mailsPage;
             }
 
             logger.Info($"User with username: {user.Username} and password: {user.Password} logged in successfully");

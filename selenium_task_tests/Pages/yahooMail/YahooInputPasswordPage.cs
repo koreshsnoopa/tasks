@@ -5,16 +5,16 @@ namespace SeleniumTaskTests
 {
     public class YahooInputPasswordPage : WebPage
     {
-        static string PasswordInputID = "login-passwd";
-        static string NextButtonID = "login-signin";
+        By PasswordInputID = By.Id("login-passwd");
+        By NextButtonID = By.Id("login-signin");
 
         IWebElement _passwordInput;
         IWebElement _nextButton;
 
         public YahooInputPasswordPage() : base()
         {
-            _passwordInput = FindElementById(PasswordInputID);
-            _nextButton = FindElementById(NextButtonID);
+            _passwordInput = _driver.FindElement(PasswordInputID);
+            _nextButton = _driver.FindElement(NextButtonID);
         }
 
         public YahooMainPage InputPassword(string password)

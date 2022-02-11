@@ -2,49 +2,42 @@
 {
     public class UserCreator
     {
-        public static string UsernameYandex = "firstaccount33@yandex.by";
-        public static string PasswordYandex = "firstaccountpassword";
-        public static string UsernameYahoo = "second_account33@yahoo.com";
-        public static string PasswordYahoo = "secondaccountpassword";
+        public const string USERNAME_YANEDX = "firstaccount33@yandex.by";
+        public const string PASSWORD_YANDEX = "firstaccountpassword";
+        public const string USERNAME_YAHOO = "second_account33@yahoo.com";
+        public const string PASSWORD_YAHOO = "secondaccountpassword";
 
-        public static User WithCredentialsFromPropertyYandex()
+        public static User WithCredentialsFromProperty(string website)
         {
-            return new User(UsernameYandex, PasswordYandex);
-        }
-
-        public static User WithCredentialsFromPropertyYahoo()
-        {
-            return new User(UsernameYahoo, PasswordYahoo);
+            if (website.Equals("yandex"))
+            {
+                return new User(USERNAME_YANEDX, PASSWORD_YANDEX);
+            }
+            else if(website.Equals("yahoo"))
+            {
+                return new User(USERNAME_YAHOO, PASSWORD_YAHOO);
+            }
+            return null;
         }
 
         public static User WithEmptyUsernameYandex()
         {
-            return new User(string.Empty, PasswordYandex);
+            return new User(string.Empty, PASSWORD_YANDEX);
         }
 
         public static User WithEmptyPasswordYandex()
         {
-            return new User(UsernameYandex, string.Empty);
-        }
-
-        public static User WithEmptyUsernameYahoo()
-        {
-            return new User(string.Empty, PasswordYahoo);
-        }
-
-        public static User WithEmptyPasswordYahoo()
-        {
-            return new User(UsernameYahoo, string.Empty);
+            return new User(USERNAME_YANEDX, string.Empty);
         }
 
         public static User WithIncorrectUsernameYandex()
         {
-            return new User("someincorrectemail@yandex.ru", PasswordYandex);
+            return new User("someincorrectemail@yandex.ru", PASSWORD_YANDEX);
         }
 
         public static User WithIncorrectPasswordYandex()
         {
-            return new User(UsernameYandex, PasswordYahoo);
+            return new User(USERNAME_YANEDX, PASSWORD_YAHOO);
         }
     }
 }

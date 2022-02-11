@@ -2,19 +2,22 @@
 {
     public class MessageCreator
     {
-        static string NewName = "Ivanov Ivan";
-        static string ThemeForName = "New name for you";
-        static string SomeTheme = "Song line";
-        static string SomeText = "Take me down to the paradise city";
+        const string NEW_NAME = "Ivanov Ivan";
+        public const string THEME_FOR_NAME = "New name for you";
+        public const string SOME_THEME = "Song line";
+        const string SOME_TEXT = "Take me down to the paradise city";
 
-        public static Message WithCredentialsFromProperty(string sendersUsername, string reciversName)
+        public static Message WithCredentialsFromProperty(string sendersUsername, string reciversName, string theme)
         {
-            return new Message(sendersUsername, reciversName, SomeTheme, SomeText);
-        }
-
-        public static Message MessageWithNewName(string sendersUsername, string reciversName)
-        {
-            return new Message(sendersUsername, reciversName, ThemeForName, NewName);
+            if (theme.Equals(SOME_THEME))
+            {
+                return new Message(sendersUsername, reciversName, SOME_THEME, SOME_TEXT);
+            }
+            else if (theme.Equals(THEME_FOR_NAME))
+            {
+                return new Message(sendersUsername, reciversName, THEME_FOR_NAME, NEW_NAME);
+            }
+            return null;
         }
     }
 }
