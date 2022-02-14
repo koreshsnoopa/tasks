@@ -61,16 +61,12 @@ namespace SeleniumTaskTests
         public Message GetMail(int numberOfMail)
         {
             string sendersName = GetMailSenderUsername(numberOfMail);
-            string reciversName;
-            string text;
-            string theme;
-
             _mail = _driver.FindElement(By.XPath($"//li[count(a[@role])=1][{numberOfMail}]"));
             _mail.Click();
             _mailsText = _driver.FindElement(MailsTextXPath);
-            text = _mailsText.Text;
-            reciversName = _driver.FindElement(ReciversNameXPath).GetAttribute("title");
-            theme = _driver.FindElement(MailsThemeXpath).Text;
+            string text = _mailsText.Text;
+            string reciversName = _driver.FindElement(ReciversNameXPath).GetAttribute("title");
+            string theme = _driver.FindElement(MailsThemeXpath).Text;
             _driver.Navigate().Back();
                   
             return new Message(sendersName, reciversName, theme, text);
