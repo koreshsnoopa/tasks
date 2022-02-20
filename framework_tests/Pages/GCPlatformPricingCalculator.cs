@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Threading;
+using NLog;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace framework_tests
 {
@@ -33,12 +32,18 @@ namespace framework_tests
         IWebElement _emailInput;
         IWebElement _sendEmail;
 
+        Logger logger = LogManager.GetCurrentClassLogger();
+
         public GCPlatformPricingCalculator() : base()
         {
         }
 
         public GCPlatformPricingCalculator ActivateMode(string mode)
         {
+            if (string.IsNullOrEmpty(mode))
+            {
+                throw new ArgumentException("Mode is empty!");
+            }
             _driver.SwitchTo().Frame(_driver.FindElement(FirstFrameLocator)).SwitchTo()
                .Frame(_driver.FindElement(FrameWithFormLocator));
             _mode = _driver.FindElement(By.XPath($"//div[@title='{mode}']/parent::md-tab-item"));
@@ -46,24 +51,35 @@ namespace framework_tests
             {
                 _mode.Click();
             }
-            _driver.SwitchTo().DefaultContent();
 
+            _driver.SwitchTo().DefaultContent();
+            logger.Info($"Mode: {mode} is active!");
             return this;
         }
 
         public GCPlatformPricingCalculator InputNumberOfInstances(int number)
         {
+            if (number <= 0)
+            {
+                throw new ArgumentException("Number of instances is incorrect!");
+            }
+
             _driver.SwitchTo().Frame(_driver.FindElement(FirstFrameLocator)).SwitchTo()
                 .Frame(_driver.FindElement(FrameWithFormLocator));
             _inputNumberOfInst = _driver.FindElement(InputNomberOfInstancesLocator);
             _inputNumberOfInst.SendKeys(number.ToString());
-            _driver.SwitchTo().DefaultContent();
 
+            _driver.SwitchTo().DefaultContent();
+            logger.Info($"Number of instances is {number}");
             return this;
         }
 
         public GCPlatformPricingCalculator ChooseSystem(string operatingSystem)
         {
+            if (string.IsNullOrEmpty(operatingSystem))
+            {
+                throw new ArgumentException("Operation system field is empty!");
+            }
             _driver.SwitchTo().Frame(_driver.FindElement(FirstFrameLocator)).SwitchTo()
                  .Frame(_driver.FindElement(FrameWithFormLocator));
             var systems = _driver.FindElements(By.XPath($"//md-content//div[@class='md-text'][contains(text(),'{operatingSystem}')]"));
@@ -72,13 +88,18 @@ namespace framework_tests
                 _driver.FindElement(By.XPath("//md-select[contains(@aria-label, 'Operating System')]//span[@class]")).Click();
                 _driver.FindElement(By.XPath($"//md-content//div[@class='md-text'][contains(text(),'{operatingSystem}')]")).Click();
             }
-            _driver.SwitchTo().DefaultContent();
 
+            _driver.SwitchTo().DefaultContent();
+            logger.Info($"System/Software is {operatingSystem}");
             return this;
         }
 
         public GCPlatformPricingCalculator ChooseVMClass(string vmClass)
         {
+            if (string.IsNullOrEmpty(vmClass))
+            {
+                throw new ArgumentException("VM class field is empty!");
+            }
             _driver.SwitchTo().Frame(_driver.FindElement(FirstFrameLocator)).SwitchTo()
                 .Frame(_driver.FindElement(FrameWithFormLocator));
 
@@ -87,8 +108,9 @@ namespace framework_tests
                 _driver.FindElement(By.XPath("//*[@placeholder='VM Class']//span[@class]")).Click();
                 _driver.FindElement(By.XPath($"//md-option[@value='{vmClass.ToLower()}'][@aria-selected='false'][@ng-disabled]")).Click();
             }
-            _driver.SwitchTo().DefaultContent();
 
+            _driver.SwitchTo().DefaultContent();
+            logger.Info($"VM class is {vmClass}");
             return this;
         }
 
@@ -105,6 +127,10 @@ namespace framework_tests
 
         public GCPlatformPricingCalculator ChooseInstanceType(string instanceType)
         {
+            if (string.IsNullOrEmpty(instanceType))
+            {
+                throw new ArgumentException("Instance type field is empty!");
+            }
             _driver.SwitchTo().Frame(_driver.FindElement(FirstFrameLocator)).SwitchTo()
                 .Frame(_driver.FindElement(FrameWithFormLocator));
 
@@ -117,13 +143,18 @@ namespace framework_tests
                 _driver.FindElement(By.XPath("//md-select[@placeholder='Instance type']//span[@class]")).Click();
                 _driver.FindElement(By.XPath($"//md-option/div[contains(text(),'{instanceType}')]/..")).Click();
             }
-            _driver.SwitchTo().DefaultContent();
 
+            _driver.SwitchTo().DefaultContent();
+            logger.Info($"Instance type is {instanceType}");
             return this;
         }
 
         public GCPlatformPricingCalculator SetGPUs(int numberOfGPUs, string GPUtype)
         {
+            if (string.IsNullOrEmpty(GPUtype) || numberOfGPUs < 0)
+            {
+                throw new ArgumentException("GPU type field is empty or incorrect number of GPUs!");
+            }
             _driver.SwitchTo().Frame(_driver.FindElement(FirstFrameLocator)).SwitchTo()
                .Frame(_driver.FindElement(FrameWithFormLocator));
 
@@ -135,11 +166,16 @@ namespace framework_tests
             _driver.FindElement(By.XPath($"//md-option[@value='{numberOfGPUs}'][contains(@ng-repeat, 'Gpu')]")).Click();
 
             _driver.SwitchTo().DefaultContent();
+            logger.Info($"GPU type is {GPUtype}, number of GPUs is {numberOfGPUs}");
             return this;
         }
 
         public GCPlatformPricingCalculator ChooseLocalSSD(string localSSD)
         {
+            if (string.IsNullOrEmpty(localSSD))
+            {
+                throw new ArgumentException("GPU type field is empty!");
+            }
             _driver.SwitchTo().Frame(_driver.FindElement(FirstFrameLocator)).SwitchTo()
               .Frame(_driver.FindElement(FrameWithFormLocator));
 
@@ -147,11 +183,16 @@ namespace framework_tests
             _driver.FindElement(By.XPath($"//md-option[@value='{localSSD[0]}']/div[contains(text(),'375')]/..")).Click();
 
             _driver.SwitchTo().DefaultContent();
+            logger.Info($"Local SSD is {localSSD}");
             return this;
         }
 
         public GCPlatformPricingCalculator ChooseDatacenterLocation(string dcLocation)
         {
+            if (string.IsNullOrEmpty(dcLocation))
+            {
+                throw new ArgumentException("Datacenter location field is empty!");
+            }
             _driver.SwitchTo().Frame(_driver.FindElement(FirstFrameLocator)).SwitchTo()
              .Frame(_driver.FindElement(FrameWithFormLocator));
 
@@ -161,11 +202,16 @@ namespace framework_tests
             _driver.FindElement(ChooseCityLocator).Click();
 
             _driver.SwitchTo().DefaultContent();
+            logger.Info($"Datacenter location is {dcLocation}");
             return this;
         }
 
         public GCPlatformPricingCalculator ChooseCommittedUsage(string committedUsage)
         {
+            if (string.IsNullOrEmpty(committedUsage))
+            {
+                throw new ArgumentException("Committed usage field is empty!");
+            }
             _driver.SwitchTo().Frame(_driver.FindElement(FirstFrameLocator)).SwitchTo()
             .Frame(_driver.FindElement(FrameWithFormLocator));
 
@@ -181,6 +227,7 @@ namespace framework_tests
             }
            
             _driver.SwitchTo().DefaultContent();
+            logger.Info($"Committed usage is {committedUsage}");
             return this;
         }
 
@@ -198,6 +245,10 @@ namespace framework_tests
 
         public GCPlatformPricingCalculator EmailEstimate(string email)
         {
+            if (string.IsNullOrEmpty(email))
+            {
+                throw new ArgumentException("Email field is empty!");
+            }
             _driver.SwitchTo().Frame(_driver.FindElement(FirstFrameLocator)).SwitchTo()
             .Frame(_driver.FindElement(FrameWithFormLocator));
 
@@ -209,6 +260,7 @@ namespace framework_tests
             _sendEmail.Click();
 
             _driver.SwitchTo().DefaultContent();
+            logger.Info($"Email with information sended to {email}");
             return this;
         }
 
@@ -228,14 +280,24 @@ namespace framework_tests
 
         public GCPlatformPricingCalculator FillComputerEngineForm(ComputerEngineForm computerEngineForm)
         {
-           InputNumberOfInstances(computerEngineForm.NumberOfInstances)
-                .ChooseSystem(computerEngineForm.SoftWare).ChooseVMClass(computerEngineForm.VMClass)
-                .ChooseInstanceType(computerEngineForm.InstanceType)
-                .SetGPUs(computerEngineForm.NumberOfGPUs, computerEngineForm.GPUType)
-                .ChooseLocalSSD(computerEngineForm.LocalSSD)
-                .ChooseDatacenterLocation(computerEngineForm.DatacenterLocation)
-                .ChooseCommittedUsage(computerEngineForm.CommitedUsage);
-
+            try
+            {
+                InputNumberOfInstances(computerEngineForm.NumberOfInstances)
+                     .ChooseSystem(computerEngineForm.SoftWare).ChooseVMClass(computerEngineForm.VMClass)
+                     .ChooseInstanceType(computerEngineForm.InstanceType)
+                     .SetGPUs(computerEngineForm.NumberOfGPUs, computerEngineForm.GPUType)
+                     .ChooseLocalSSD(computerEngineForm.LocalSSD)
+                     .ChooseDatacenterLocation(computerEngineForm.DatacenterLocation)
+                     .ChooseCommittedUsage(computerEngineForm.CommitedUsage);
+            }
+            catch (ArgumentException ex)
+            {
+                logger.Error(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
             return this;
         }
     }

@@ -1,0 +1,11 @@
+﻿{
+  "Number Of Instances": 2,
+  "SoftWare": "Free: Debian, CentOS, CoreOS, Ubuntu",
+  "VM Class": "Regular",
+  "Instance Type": "n1-standard-2",
+  "Number Of GPUs": 4,
+  "GPU Type": "NVIDIA Tesla P4",
+  "Local SSD": " 2x375 Gb",
+  "Datacenter Location": "London (europe-west2)",
+  "Commited Usage": "1 Year"
+}

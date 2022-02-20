@@ -17,8 +17,14 @@ namespace framework_tests
         {
             if (_driver == null)
             {
-                //_driver = new FirefoxDriver();
-                _driver = new ChromeDriver();
+                if (Environment.GetEnvironmentVariable("browser").Equals("firefox"))
+                {
+                    _driver = new FirefoxDriver();
+                }
+                else if (Environment.GetEnvironmentVariable("browser").Equals("chrome"))
+                {
+                    _driver = new ChromeDriver();
+                }
                 _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
                 _driver.Manage().Window.Maximize();
             }

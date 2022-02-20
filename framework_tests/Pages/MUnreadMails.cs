@@ -33,7 +33,7 @@ namespace framework_tests
                     count++;
                 }
             }
-            string? message = _priceFromMail.Text;
+            string message = _priceFromMail.Text;
             int first = message.IndexOf('D') + 1;
             message.Replace(",", "");
 

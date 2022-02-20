@@ -1,17 +1,31 @@
 ﻿using System;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 namespace framework_tests
 {
     public class ComputerEngineForm
     {
-        public int NumberOfInstances { get; private set; }
-        public string SoftWare { get; private set; }
-        public string VMClass { get; private set; }
-        public string InstanceType { get; private set; }
-        public int NumberOfGPUs { get; private set; }
-        public string GPUType { get; private set; }
-        public string LocalSSD { get; private set; }
-        public string DatacenterLocation { get; private set; }
-        public string CommitedUsage { get; private set; }
+        [JsonProperty(PropertyName = "NumberOfInstances")]
+        public int NumberOfInstances { get; set; }
+        public string SoftWare { get; set; }
+        public string VMClass { get; set; }
+        public string InstanceType { get; set; }
+        public int NumberOfGPUs { get; set; }
+        public string GPUType { get; set; }
+
+        public static explicit operator ComputerEngineForm(Task<ComputerEngineForm> v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string LocalSSD { get; set; }
+        public string DatacenterLocation { get; set; }
+        public string CommitedUsage { get; set; }
+
+        public ComputerEngineForm()
+        { }
 
         public ComputerEngineForm(int NumberOfInstances, string SoftWare, string VMClass, string InstanceType,
             int NumberOfGPUs, string GPUType, string LocalSSD, string DatacenterLocation, string CommitedUsage)

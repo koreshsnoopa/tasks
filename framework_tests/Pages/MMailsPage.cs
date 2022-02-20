@@ -1,4 +1,5 @@
 ﻿using System;
+using NLog;
 using OpenQA.Selenium;
 
 namespace framework_tests
@@ -10,6 +11,8 @@ namespace framework_tests
 
         IWebElement _goToMails;
 
+        Logger logger = LogManager.GetCurrentClassLogger();
+
         public MMailsPage()
         {
             _goToMails = _driver.FindElement(GoToMailLocator);
@@ -17,7 +20,9 @@ namespace framework_tests
 
         public string GetEmailName()
         {
-            return _driver.FindElement(EmailNameLocator).Text;
+            string emailName = _driver.FindElement(EmailNameLocator).Text;
+            logger.Info($"Generated email: {emailName}");
+            return emailName;
         }
 
         public MUnreadMails GoToMails()

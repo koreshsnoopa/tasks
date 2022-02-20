@@ -1,5 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace framework_tests
 {
@@ -17,7 +16,6 @@ namespace framework_tests
             _goToCalculatorPage = _driver.FindElement(CalculatorPageXPath);
             _goToCalculatorPage.Click();
             return new GCPlatformPricingCalculator();
-
         }
     }
 }
