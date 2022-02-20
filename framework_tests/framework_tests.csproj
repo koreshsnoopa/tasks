@@ -29,11 +29,13 @@
     <None Remove="Pages\" />
     <None Remove="Models\" />
     <None Remove="System.Configuration.ConfigurationManager" />
+    <None Remove="Service\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Driver\" />
     <Folder Include="TestsForm\" />
     <Folder Include="Pages\" />
     <Folder Include="Models\" />
+    <Folder Include="Service\" />
   </ItemGroup>
 </Project>
