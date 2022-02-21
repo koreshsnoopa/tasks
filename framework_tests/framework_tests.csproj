@@ -15,7 +15,6 @@
     <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.30.0.1" />
     <PackageReference Include="NLog" Version="4.7.13" />
     <PackageReference Include="NLog.Config" Version="4.7.13" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +29,9 @@
     <None Remove="Models\" />
     <None Remove="System.Configuration.ConfigurationManager" />
     <None Remove="Service\" />
+    <None Remove="Target\" />
+    <None Remove="Target\Logs\" />
+    <None Remove="Target\Screenshots\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Driver\" />
@@ -37,5 +39,8 @@
     <Folder Include="Pages\" />
     <Folder Include="Models\" />
     <Folder Include="Service\" />
+    <Folder Include="Target\" />
+    <Folder Include="Target\Logs\" />
+    <Folder Include="Target\Screenshots\" />
   </ItemGroup>
 </Project>

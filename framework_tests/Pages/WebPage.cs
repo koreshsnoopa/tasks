@@ -9,8 +9,9 @@ namespace framework_tests
         protected IWebDriver _driver;
         protected WebDriverWait wait;
 
-            protected WebPage()
+            public WebPage()
             {
+                _driver = DriverSingleton.GetDriver();
                 wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
             }
       }

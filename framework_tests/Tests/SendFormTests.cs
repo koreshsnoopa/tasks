@@ -5,13 +5,13 @@ using OpenQA.Selenium;
 namespace framework_tests
 {
     [TestFixture]
-    [Category("All")]
     public class SendFormTests : CommonConditions
     {
         const string MODE = "Compute Engine";
 
         [Test]
-        public void FillFormAndCheck()
+        [Category("All")]
+        public void FillFormAndCheckTest()
         {
             ComputerEngineForm form = ComputerEngineFormCreator.WithCredentialsFromProperty();
 

@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Threading;
+using OpenQA.Selenium;
 
 namespace framework_tests
 {
@@ -13,6 +14,7 @@ namespace framework_tests
 
         public GCPlatformPricingCalculator GoToCalculator()
         {
+            Thread.Sleep(100);
             _goToCalculatorPage = _driver.FindElement(CalculatorPageXPath);
             _goToCalculatorPage.Click();
             return new GCPlatformPricingCalculator();

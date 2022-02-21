@@ -10,7 +10,7 @@ namespace framework_tests
         protected IWebDriver driver;
         public const string GOOGLE_CLOUD_URL = "https://cloud.google.com/";
         public const string YOPMAIL_URL = "https://yopmail.com/ru/";
-        public const string INFO_TO_SEARCH = "Google Cloud Platform Pricing Calculator";
+        public const string INFO_TO_SEARCH = "Google Cloud Platform Pricing Calculator ";
 
         [SetUp]
         public void SetUp()
@@ -26,7 +26,7 @@ namespace framework_tests
             {
                 var screenFile = ((ITakesScreenshot)DriverSingleton.GetDriver()).GetScreenshot();
                 screenFile
-                    .SaveAsFile($"/Users/marialukasova/Projects/epam_tasks/framework_tests/bin/Debug/netcoreapp3.1/screenshots/{DateTime.Now.ToString("dd_MM_yy_HH_mm_ss")}.png", ScreenshotImageFormat.Png);
+                    .SaveAsFile($"/Users/marialukasova/Projects/epam_tasks/framework_tests/Target/Screenshots/{DateTime.Now.ToString("dd_MM_yy_HH_mm_ss")}.png", ScreenshotImageFormat.Png);
             }
             DriverSingleton.CloseDriver();
         }
